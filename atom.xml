@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://momijineko.xyz/"/>
-  <updated>2019-09-25T04:10:49.150Z</updated>
+  <updated>2019-09-27T12:40:07.229Z</updated>
   <id>https://momijineko.xyz/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Vue过滤器的使用</title>
+    <link href="https://momijineko.xyz/2019/09/27/Vue%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>https://momijineko.xyz/2019/09/27/Vue过滤器的使用/</id>
+    <published>2019-09-27T11:53:36.000Z</published>
+    <updated>2019-09-27T12:40:07.229Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="过滤器概念"><a href="#过滤器概念" class="headerlink" title="过滤器概念"></a>过滤器概念</h2><blockquote><p>Vue.js 允许你自定义过滤器，可被用做一些常见的文本格式化，过滤器可以用在两个地方：mustache插值和v-bind表达式。过滤器应该被添加在JavaScript表达式的尾部，有“管道”符指示；</p></blockquote><p>代码示例：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 过滤器的定义语法</span></span><br><span class="line">&#123;&#123; name | nameope &#125;&#125;  <span class="comment">// mustache插值表达式</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 全局过滤器</span></span><br><span class="line">Vue.filter(<span class="string">'nameope'</span>, data =&gt; &#123;</span><br><span class="line">  <span class="comment">// 在这里做一些对mustache插值数据的渲染前处理</span></span><br><span class="line">  <span class="keyword">return</span> data</span><br><span class="line">  <span class="comment">// return 处理完的数据</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>过滤器中匿名函数的第一个参数是从管道符前接收到的原值，从第二个参数起可以传入需要参与对原值处理的值<br>如：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Vue.filter(<span class="string">'nameope'</span>, (data, arg) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> (data + arg)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>过滤器可以多次调用</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; msg | format | test &#125;&#125;</span><br></pre></td></tr></table></figure><p><code>msg</code> 值会先被 <code>format</code> 处理，处理之后再丢给 <code>test</code> 处理，从左往右依次顺序执行。</p><p>下面是一个对ISO时间字符串进行过滤格式化的实例：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 全局的过滤器，进行时间的格式化</span></span><br><span class="line">Vue.filter(<span class="string">'dateFormat'</span>, dateStr =&gt; &#123;</span><br><span class="line">  <span class="comment">// 根据给定的时间字符串得到相应的时间</span></span><br><span class="line">  <span class="keyword">let</span> dt = <span class="keyword">new</span> <span class="built_in">Date</span>(dateStr)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> y = dt.getFullYear()</span><br><span class="line">  <span class="keyword">let</span> m = dt.getMonth() + <span class="number">1</span></span><br><span class="line">  <span class="keyword">let</span> d = dt.getDate()</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;y&#125;</span>-<span class="subst">$&#123;m&#125;</span>-<span class="subst">$&#123;d&#125;</span>`</span></span><br></pre></td></tr></table></figure><p>私有过滤器：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;&#125;,</span><br><span class="line">  methods: &#123;&#125;,</span><br><span class="line">  filters: &#123;&#125;   <span class="comment">// 这里是私有过滤器</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;过滤器概念&quot;&gt;&lt;a href=&quot;#过滤器概念&quot; class=&quot;headerlink&quot; title=&quot;过滤器概念&quot;&gt;&lt;/a&gt;过滤器概念&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;Vue.js 允许你自定义过滤器，可被用做一些常见的文本格式化，过滤器可以用在两个地方：m
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>更换NexT主题后的测试页面</title>
