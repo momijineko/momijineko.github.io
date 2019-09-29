@@ -2,9 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://momijineko.xyz/link/index.html</loc>
+    
+    <lastmod>2019-09-29T04:03:06.696Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://momijineko.xyz/schedule/index.html</loc>
+    
+    <lastmod>2019-09-29T03:59:34.728Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://momijineko.xyz/tags/index.html</loc>
+    
+    <lastmod>2019-09-29T03:56:48.799Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://momijineko.xyz/about/index.html</loc>
     
-    <lastmod>2019-09-29T03:50:57.620Z</lastmod>
+    <lastmod>2019-09-29T03:56:32.571Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://momijineko.xyz/categories/index.html</loc>
+    
+    <lastmod>2019-09-29T03:54:35.079Z</lastmod>
     
   </url>
   
