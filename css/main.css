@@ -400,6 +400,36 @@ body {
     width: 73%;
   }
 }
+.highlight-wrap {
+  position: relative;
+}
+.highlight-wrap:hover .copy-btn,
+.highlight-wrap .copy-btn:focus {
+  opacity: 1;
+}
+.copy-btn {
+  color: #333;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 700;
+  line-height: 1.6;
+  opacity: 0;
+  outline: 0;
+  padding: 2px 6px;
+  position: absolute;
+  transition: opacity 0.3s ease-in-out;
+  vertical-align: middle;
+  white-space: nowrap;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  background-color: #fff;
+  border: 0;
+  font-size: 0.8125em;
+  right: 0;
+  top: 0;
+}
 pre,
 .highlight {
   background: #f7f7f7;
@@ -1004,6 +1034,16 @@ pre .javascript .function {
     opacity: 0.8;
   }
 }
+.reading-progress-bar {
+  background: #37c6c0;
+  display: block;
+  height: 2px;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 0;
+  z-index: 9999;
+}
 .header {
   background: transparent;
 }
@@ -1131,6 +1171,73 @@ pre .javascript .function {
 }
 .use-motion .menu-item {
   opacity: 0;
+}
+.github-corner :hover .octo-arm {
+  animation: octocat-wave 560ms ease-in-out;
+}
+.github-corner svg {
+  border: 0;
+  color: #fff;
+  fill: #222;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+@media (max-width: 991px) {
+  .github-corner svg {
+    color: #222;
+    fill: #fff;
+  }
+  .github-corner .github-corner:hover .octo-arm {
+    animation: none;
+  }
+  .github-corner .github-corner .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
+  }
+}
+@-moz-keyframes octocat-wave {
+  0%, 100% {
+    transform: rotate(0);
+  }
+  20%, 60% {
+    transform: rotate(-25deg);
+  }
+  40%, 80% {
+    transform: rotate(10deg);
+  }
+}
+@-webkit-keyframes octocat-wave {
+  0%, 100% {
+    transform: rotate(0);
+  }
+  20%, 60% {
+    transform: rotate(-25deg);
+  }
+  40%, 80% {
+    transform: rotate(10deg);
+  }
+}
+@-o-keyframes octocat-wave {
+  0%, 100% {
+    transform: rotate(0);
+  }
+  20%, 60% {
+    transform: rotate(-25deg);
+  }
+  40%, 80% {
+    transform: rotate(10deg);
+  }
+}
+@keyframes octocat-wave {
+  0%, 100% {
+    transform: rotate(0);
+  }
+  20%, 60% {
+    transform: rotate(-25deg);
+  }
+  40%, 80% {
+    transform: rotate(10deg);
+  }
 }
 .post-body {
   overflow-wrap: break-word;
@@ -1594,6 +1701,13 @@ article:last-child .post-eof {
   align-self: center;
   height: 30px;
 }
+.post-copyright {
+  background-color: #f9f9f9;
+  border-left: 3px solid #ff1700;
+  list-style: none;
+  margin: 2em 0 0;
+  padding: 0.5em 1em;
+}
 .sidebar {
   background: #222;
   bottom: 0;
@@ -1647,6 +1761,13 @@ article:last-child .post-eof {
   margin: 0 auto;
   max-width: 120px;
   padding: 2px;
+  border-radius: 50%;
+}
+.site-author-image {
+  transition: transform 1s ease-out;
+}
+.site-author-image:hover {
+  transform: rotateZ(360deg);
 }
 .site-author-name {
   color: #222;
@@ -1674,7 +1795,7 @@ article:last-child .post-eof {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #06bada;
+  background: #f7ff47;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2298,6 +2419,23 @@ ul.breadcrumb li + li:last-child {
 .tag-cloud a:hover {
   color: #222 !important;
 }
+::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.2);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(0,0,0,0.1);
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0,0,0,0.3);
+}
+::-webkit-scrollbar-thumb:active {
+  background-color: rgba(0,0,0,0.4);
+}
 .header {
   margin: 0 auto;
   position: relative;
@@ -2607,7 +2745,6 @@ ul.breadcrumb li + li:last-child {
 }
 .links-of-author-item {
   margin: 5px 0 0;
-  width: 50%;
 }
 .links-of-author-item a,
 .links-of-author-item span.exturl {

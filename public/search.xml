@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>测试用例中重要级别分类记录</title>
+      <link href="/2019/10/03/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E4%B8%AD%E9%87%8D%E8%A6%81%E7%BA%A7%E5%88%AB%E5%88%86%E7%B1%BB/"/>
+      <url>/2019/10/03/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E4%B8%AD%E9%87%8D%E8%A6%81%E7%BA%A7%E5%88%AB%E5%88%86%E7%B1%BB/</url>
+      
+        <content type="html"><![CDATA[<p>在我们的参赛标准里</p><ul><li>会影响系统运行的读写功能级别都是高，比如crud功能</li><li>查询功能级别是中</li><li>UI相关的级别是低，比如页面正确性验证所在的级别就为低</li></ul><p>而这个标准并不是业界统一的，不同的公司企业制定的标准不同。</p><blockquote><p>记录自老师的原话</p><p>一般以企业给的标准为准，但是各个企业标准不统一，我们比赛的这家企业对这个问题的级别前后说法也不一。一般测试用例的级别区分不太分明，也不太重要，bug的级别非常重要。</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 软件测试 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 测试 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>ES6相关的新方法记录</title>
       <link href="/2019/09/29/ES6%E7%9B%B8%E5%85%B3%E7%9A%84%E6%96%B0%E6%96%B9%E6%B3%95%E8%AE%B0%E5%BD%95/"/>
       <url>/2019/09/29/ES6%E7%9B%B8%E5%85%B3%E7%9A%84%E6%96%B0%E6%96%B9%E6%B3%95%E8%AE%B0%E5%BD%95/</url>
