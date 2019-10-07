@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://momijineko.xyz/"/>
-  <updated>2019-10-03T14:06:01.747Z</updated>
+  <updated>2019-10-07T07:03:27.199Z</updated>
   <id>https://momijineko.xyz/</id>
   
   <author>
@@ -17,11 +17,41 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>selenium自动化测试学习记录</title>
+    <link href="https://momijineko.xyz/2019/10/07/selenium%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"/>
+    <id>https://momijineko.xyz/2019/10/07/selenium自动化测试学习记录/</id>
+    <published>2019-10-07T06:43:59.000Z</published>
+    <updated>2019-10-07T07:03:27.199Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="环境搭建步骤"><a href="#环境搭建步骤" class="headerlink" title="环境搭建步骤"></a>环境搭建步骤</h4><ul><li>安装<code>python</code>环境</li><li>通过<code>pip</code>下载<code>selenium</code><ul><li>打开控制台或者终端</li><li><code>python -m pip install --upgrade pip</code> 更新<code>pip</code>到最新版本</li><li>如果安装失败可试添加<code>--user</code> 如 <code>python -m pip install --user --upgrade pip</code></li><li>安装<code>selenium</code>：<code>pip install [-U] selenium</code></li></ul></li></ul><h2 id="自动化环境搭建完毕"><a href="#自动化环境搭建完毕" class="headerlink" title="自动化环境搭建完毕"></a>自动化环境搭建完毕</h2><h4 id="模仿鼠标键盘的链式操作ActionChains"><a href="#模仿鼠标键盘的链式操作ActionChains" class="headerlink" title="模仿鼠标键盘的链式操作ActionChains"></a>模仿鼠标键盘的链式操作<code>ActionChains</code></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver <span class="keyword">import</span> ActionChains</span><br><span class="line"></span><br><span class="line">driver = webdriver.Chrome()</span><br><span class="line">driver.get(<span class="string">'https://www.baidu.com'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定位到文本框</span></span><br><span class="line">inp = driver.find_element_by_id(<span class="string">'kw'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 链式</span></span><br><span class="line">ActionChains(driver).click().send_keys(<span class="string">'php是世界上最好的语言'</span>).context_click().perform()</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;环境搭建步骤&quot;&gt;&lt;a href=&quot;#环境搭建步骤&quot; class=&quot;headerlink&quot; title=&quot;环境搭建步骤&quot;&gt;&lt;/a&gt;环境搭建步骤&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;安装&lt;code&gt;python&lt;/code&gt;环境&lt;/li&gt;
+&lt;li&gt;通过&lt;code&gt;pip&lt;/co
+      
+    
+    </summary>
+    
+    
+      <category term="软件测试" scheme="https://momijineko.xyz/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/"/>
+    
+    
+      <category term="自动化测试" scheme="https://momijineko.xyz/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/"/>
+    
+      <category term="selenium" scheme="https://momijineko.xyz/tags/selenium/"/>
+    
+  </entry>
+  
+  <entry>
     <title>测试用例中重要级别分类记录</title>
     <link href="https://momijineko.xyz/2019/10/03/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E4%B8%AD%E9%87%8D%E8%A6%81%E7%BA%A7%E5%88%AB%E5%88%86%E7%B1%BB/"/>
     <id>https://momijineko.xyz/2019/10/03/测试用例中重要级别分类/</id>
     <published>2019-10-03T13:56:35.000Z</published>
-    <updated>2019-10-03T14:06:01.747Z</updated>
+    <updated>2019-10-07T06:45:08.597Z</updated>
     
     <content type="html"><![CDATA[<p>在我们的参赛标准里</p><ul><li>会影响系统运行的读写功能级别都是高，比如crud功能</li><li>查询功能级别是中</li><li>UI相关的级别是低，比如页面正确性验证所在的级别就为低</li></ul><p>而这个标准并不是业界统一的，不同的公司企业制定的标准不同。</p><blockquote><p>记录自老师的原话</p><p>一般以企业给的标准为准，但是各个企业标准不统一，我们比赛的这家企业对这个问题的级别前后说法也不一。一般测试用例的级别区分不太分明，也不太重要，bug的级别非常重要。</p></blockquote>]]></content>
     
@@ -44,7 +74,7 @@
       <category term="软件测试" scheme="https://momijineko.xyz/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/"/>
     
     
-      <category term="测试" scheme="https://momijineko.xyz/tags/%E6%B5%8B%E8%AF%95/"/>
+      <category term="功能测试" scheme="https://momijineko.xyz/tags/%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
     
   </entry>
   

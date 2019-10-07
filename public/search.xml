@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>selenium自动化测试学习记录</title>
+      <link href="/2019/10/07/selenium%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"/>
+      <url>/2019/10/07/selenium%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</url>
+      
+        <content type="html"><![CDATA[<h4 id="环境搭建步骤"><a href="#环境搭建步骤" class="headerlink" title="环境搭建步骤"></a>环境搭建步骤</h4><ul><li>安装<code>python</code>环境</li><li>通过<code>pip</code>下载<code>selenium</code><ul><li>打开控制台或者终端</li><li><code>python -m pip install --upgrade pip</code> 更新<code>pip</code>到最新版本</li><li>如果安装失败可试添加<code>--user</code> 如 <code>python -m pip install --user --upgrade pip</code></li><li>安装<code>selenium</code>：<code>pip install [-U] selenium</code></li></ul></li></ul><h2 id="自动化环境搭建完毕"><a href="#自动化环境搭建完毕" class="headerlink" title="自动化环境搭建完毕"></a>自动化环境搭建完毕</h2><h4 id="模仿鼠标键盘的链式操作ActionChains"><a href="#模仿鼠标键盘的链式操作ActionChains" class="headerlink" title="模仿鼠标键盘的链式操作ActionChains"></a>模仿鼠标键盘的链式操作<code>ActionChains</code></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver <span class="keyword">import</span> ActionChains</span><br><span class="line"></span><br><span class="line">driver = webdriver.Chrome()</span><br><span class="line">driver.get(<span class="string">'https://www.baidu.com'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定位到文本框</span></span><br><span class="line">inp = driver.find_element_by_id(<span class="string">'kw'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 链式</span></span><br><span class="line">ActionChains(driver).click().send_keys(<span class="string">'php是世界上最好的语言'</span>).context_click().perform()</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 软件测试 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 自动化测试 </tag>
+            
+            <tag> selenium </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>测试用例中重要级别分类记录</title>
       <link href="/2019/10/03/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E4%B8%AD%E9%87%8D%E8%A6%81%E7%BA%A7%E5%88%AB%E5%88%86%E7%B1%BB/"/>
       <url>/2019/10/03/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E4%B8%AD%E9%87%8D%E8%A6%81%E7%BA%A7%E5%88%AB%E5%88%86%E7%B1%BB/</url>
@@ -20,7 +47,7 @@
       
         <tags>
             
-            <tag> 测试 </tag>
+            <tag> 功能测试 </tag>
             
         </tags>
       
