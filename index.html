@@ -360,7 +360,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-08 13:53:57" itemprop="dateModified" datetime="2019-10-08T13:53:57+08:00">2019-10-08</time>
+                <time title="修改时间：2019-10-08 15:24:57" itemprop="dateModified" datetime="2019-10-08T15:24:57+08:00">2019-10-08</time>
               </span>
             
           
@@ -429,7 +429,12 @@
 <p>如何灵活运用这两种方式：</p>
 <p>当某个页面元素变化多，影响多的情况下，用sleep,等页面元素稳定了，再定位。</p>
 <p>如果用implicitly_wait(5)，还没等页面元素稳定后就定位 ，导致定位不准确，比如操作某个元素后，会出现提示框，影响了后面元素的位置，导致定位不准确；所以用sleep,等提示框消失后开始定位</p>
-
+<hr>
+<h4 id="执行JavaScript语句实现相应操作"><a href="#执行JavaScript语句实现相应操作" class="headerlink" title="执行JavaScript语句实现相应操作"></a>执行<code>JavaScript</code>语句实现相应操作</h4><ul>
+<li><code>driver.execute_script(&#39;&#39;)</code> 在’’里输入js语句</li>
+</ul>
+<p>比如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 页面滚动300px</span></span><br><span class="line">driver.execute_script(<span class="string">'window.scrollTo(0, 300)'</span>)</span><br></pre></td></tr></table></figure>
         
       
     </div>
