@@ -360,7 +360,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-07 15:27:48" itemprop="dateModified" datetime="2019-10-07T15:27:48+08:00">2019-10-07</time>
+                <time title="修改时间：2019-10-08 13:53:57" itemprop="dateModified" datetime="2019-10-08T13:53:57+08:00">2019-10-08</time>
               </span>
             
           
@@ -419,6 +419,17 @@
 
 <hr>
 <h4 id="操作js代码进行标签属性的删除"><a href="#操作js代码进行标签属性的删除" class="headerlink" title="操作js代码进行标签属性的删除"></a>操作js代码进行标签属性的删除</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 百度主页</span></span><br><span class="line">inp = driver.find_element(By.PARTIAL_LINK_TEXT, <span class="string">'主页 '</span>)</span><br><span class="line"></span><br><span class="line">driver.execute_script(<span class="string">'arguments[0].removeAttribute("target")'</span>, inp)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="driver-implicitly-wait-与time-sleep-的区别"><a href="#driver-implicitly-wait-与time-sleep-的区别" class="headerlink" title="driver.implicitly_wait()与time.sleep()的区别"></a>driver.implicitly_wait()与time.sleep()的区别</h4><blockquote>
+<p>作者：乐乐熊小妹<br>来源：<a href="https://www.cnblogs.com/lelexiong/p/9875157.html" target="_blank" rel="noopener">https://www.cnblogs.com/lelexiong/p/9875157.html</a></p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 隐式等待，5秒钟内只要找到了元素就开始执行，5秒钟未找到超时</span></span><br><span class="line">driver.implictly_wait(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 延时5秒执行</span></span><br><span class="line">time.sleep(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+<p>如何灵活运用这两种方式：</p>
+<p>当某个页面元素变化多，影响多的情况下，用sleep,等页面元素稳定了，再定位。</p>
+<p>如果用implicitly_wait(5)，还没等页面元素稳定后就定位 ，导致定位不准确，比如操作某个元素后，会出现提示框，影响了后面元素的位置，导致定位不准确；所以用sleep,等提示框消失后开始定位</p>
+
         
       
     </div>
