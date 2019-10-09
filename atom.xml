@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://momijineko.xyz/"/>
-  <updated>2019-10-08T08:01:55.553Z</updated>
+  <updated>2019-10-09T03:00:37.736Z</updated>
   <id>https://momijineko.xyz/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python-unittest单元测试框架</title>
+    <link href="https://momijineko.xyz/2019/10/08/Python-unittest%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6/"/>
+    <id>https://momijineko.xyz/2019/10/08/Python-unittest单元测试框架/</id>
+    <published>2019-10-08T13:28:58.000Z</published>
+    <updated>2019-10-09T03:00:37.736Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="什么是unittest"><a href="#什么是unittest" class="headerlink" title="什么是unittest"></a>什么是<code>unittest</code></h3><p><code>unittest</code>是Python自带的单元测试框架，可以帮我们完成接口自动化测试、UI自动化测试。主要用来组织和执行测试单条测试用例组织在一起执行，同时能够满足如果一条测试用例执行失败，后面的测试执行，并且提供了丰富的断言方法，判断测试用例是否通过，最终生成测试结果。</p><a id="more"></a><hr><h3 id="unittest核心要素"><a href="#unittest核心要素" class="headerlink" title="unittest核心要素"></a><code>unittest</code>核心要素</h3><p><img alt="unittest核心要素" data-src="./../../source%5Cimg%5CQQ%E5%9B%BE%E7%89%8720191008213516.png"></p><hr><h3 id="unittest测试流程"><a href="#unittest测试流程" class="headerlink" title="unittest测试流程"></a><code>unittest</code>测试流程</h3><ol><li>写好<code>TestCase</code>：一个<code>class</code>继承<code>unittest.TestCase</code>，就是一个测试用例，其中有多个以<code>test</code>开头的方法，每一个方法都在<code>load</code>的时候会生成一个<code>TestCase</code>实例。如果一个<code>class</code>中有四个<code>test</code>开头的方法，最后<code>load</code>到<code>suite</code>中时则有四个测试用例。</li><li>由<code>TestLoader</code>加载<code>TestCase</code>到<code>TestSuite</code>。</li><li>由<code>TextTestRunner</code>来运行<code>TestSuite</code>，运行的结果保存在<code>TextTestResult</code>中。</li></ol><p><strong>说明</strong>：</p><p>通过命令行或者<code>unittest.main()</code>执行时，<code>main()</code>会调用<code>TextTestRunner</code>中的<code>run()</code>来执行，或者可以直接通过<code>TextTestRunner</code>来执行用例。<br><code>Runner</code>执行时，默认将结果输出到控制台，我们可以设置其输出到文件，在文件中查看结果，也可以通过<code>HTMLTestRunner</code>将结果输出到<code>HTML</code>。</p><hr><h3 id="unittest框架使用说明"><a href="#unittest框架使用说明" class="headerlink" title="unittest框架使用说明"></a><code>unittest</code>框架使用说明</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> unittest <span class="comment"># 导入测试框架</span></span><br><span class="line">`</span><br></pre></td></tr></table></figure><p>定义一个继承自<code>unittest.TestCase</code>的测试用例类。</p><p>定义<code>setUp()</code>方法、<code>tearDown()</code>方法、<code>setUpClass()</code>方法、<code>tearDownClass()</code>方法，其中<code>setUp()</code>方法指在每个测试用例方法执行前，都会执行一次；<code>tearDown()</code>方法指在每次测试用例方法执行结束后，都会执行一次；<code>setUpClass()</code>方法指在一个测试用例集执行前只执行一次；<code>tearDownClass()</code>方法指在一个测试用例集执行后只执行一次。</p><p>定义测试用例，名字以<code>test</code>开头。<br>一个测试用例应该只测试一个方面，测试目的和测试内容应很明确。主要调用<code>assertEqual</code>、<code>assertRaises</code>等断言方法判断程序执行结果和预期值是否相符。</p><p>调用<code>unittest.main()</code>启动测试。<br>如果测试未通过，会输出相应的错误提示。如果测试全部通过则不显示任何东西。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;什么是unittest&quot;&gt;&lt;a href=&quot;#什么是unittest&quot; class=&quot;headerlink&quot; title=&quot;什么是unittest&quot;&gt;&lt;/a&gt;什么是&lt;code&gt;unittest&lt;/code&gt;&lt;/h3&gt;&lt;p&gt;&lt;code&gt;unittest&lt;/code&gt;是Python自带的单元测试框架，可以帮我们完成接口自动化测试、UI自动化测试。主要用来组织和执行测试单条测试用例组织在一起执行，同时能够满足如果一条测试用例执行失败，后面的测试执行，并且提供了丰富的断言方法，判断测试用例是否通过，最终生成测试结果。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="软件测试" scheme="https://momijineko.xyz/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/"/>
+    
+    
+      <category term="自动化测试" scheme="https://momijineko.xyz/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/"/>
+    
+      <category term="selenium" scheme="https://momijineko.xyz/tags/selenium/"/>
+    
+      <category term="Python" scheme="https://momijineko.xyz/tags/Python/"/>
+    
+  </entry>
   
   <entry>
     <title>selenium自动化测试学习记录</title>
