@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://momijineko.xyz/"/>
-  <updated>2019-10-09T03:29:13.062Z</updated>
+  <updated>2019-10-21T06:48:21.152Z</updated>
   <id>https://momijineko.xyz/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>测试用例编写顺序和要点</title>
+    <link href="https://momijineko.xyz/2019/10/21/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E6%80%BB%E7%BB%93/"/>
+    <id>https://momijineko.xyz/2019/10/21/测试用例总结/</id>
+    <published>2019-10-21T05:12:04.000Z</published>
+    <updated>2019-10-21T06:48:21.152Z</updated>
+    
+    <content type="html"><![CDATA[<p>记录自己在软件测试的学习过程中的要点</p><a id="more"></a><hr><h4 id="模块或功能点开头"><a href="#模块或功能点开头" class="headerlink" title="模块或功能点开头"></a>模块或功能点开头</h4><ul><li>在编写模块非首页或登录页时，第一条用例应该是<ul><li><strong>导航栏有效性验证</strong>：跳转到相应页面</li></ul></li><li>在模块中每个会跳转新页面或弹窗的功能点，开头三条用例：<ul><li>功能测试<ul><li><strong>按钮/文本链接有效性验证</strong>：跳转到页面或弹出窗口</li><li><strong>文字控件显示验证</strong>：描述当前页面的显示内容<ul><li>Title</li><li>面包屑（如果有）</li><li>文字和控件显示（如果有）</li><li>导航栏高亮显示（如果有）</li><li>列表字段（如果为列表页）</li><li>按钮显示（如果有）</li></ul></li><li>如果含<span style="background: yellow">多角色权限</span>，应该拆开编写</li><li>如果含<span style="background: yellow">列表</span>，应该有数据和无数据分开编写</li></ul></li><li>UI测试<ul><li><strong>布局配色合理性验证</strong>：布局美观，配色合理</li><li><strong>文字显示正确性验证</strong>：文字正确无错漏</li></ul></li></ul></li><li>列表页：<ul><li>页码选择器：<ul><li><strong>各个按钮的有效性验证</strong></li><li><strong>首页时上一页按钮不可用验证</strong></li><li><strong>末页时下一页按钮不可用验证</strong></li></ul></li><li>排序：<ul><li><strong>排序正确性验证</strong>：列表按某种规则升序中降序显示全部信息</li></ul></li></ul></li></ul><h4 id="查询功能点"><a href="#查询功能点" class="headerlink" title="查询功能点"></a>查询功能点</h4><ul><li>控件测试：<ul><li><strong>下拉框列表值正确性验证</strong>：下拉列表显示blablabla</li><li><strong>日历控件正确性验证</strong>：日期默认为今天，可选择blablabla，需求说明书已说明</li></ul></li><li>具体的查询：先测试不输入查询条件的情况，再逐个测试单条件，再测试组合条件<ul><li><strong>不输入查询条件，进行查询</strong>：列表显示所有信息</li><li><strong>从下拉框到文本框单条件依次输入，进行查询</strong>：列表显示相应的信息</li><li><strong>输入全部查询条件，进行查询</strong>：同上条</li><li>若文本框可进行模糊查询，应该拆分成==模糊查询和精确查询==两种情况</li></ul></li></ul><h4 id="具体的功能测试"><a href="#具体的功能测试" class="headerlink" title="具体的功能测试"></a>具体的功能测试</h4><p>采用<span style="background: yellow">等价类划分</span>和<span style="background: yellow">边界值分析</span>等白盒测试方法进行编写，无效等价类严格按有效等价类（与或非）取反得到</p><h4 id="模块或功能点结尾"><a href="#模块或功能点结尾" class="headerlink" title="模块或功能点结尾"></a>模块或功能点结尾</h4><ul><li>弹窗：<ul><li><strong>取消按钮有效性验证</strong>：关闭弹窗，返回上一页</li><li><strong>x按钮（若有）有效性验证</strong>：同上</li><li><span style="background: yellow">确定/提交等按钮不需要进行单独验证</span></li></ul></li><li>状态管理：<ul><li><strong>启用按钮有效性验证</strong></li><li><strong>禁用按钮有效性验证</strong></li></ul></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;记录自己在软件测试的学习过程中的要点&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="软件测试" scheme="https://momijineko.xyz/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/"/>
+    
+    
+      <category term="功能测试" scheme="https://momijineko.xyz/tags/%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
   
   <entry>
     <title>Python-unittest单元测试框架</title>
