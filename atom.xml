@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://momijineko.xyz/"/>
-  <updated>2019-10-21T06:48:21.152Z</updated>
+  <updated>2019-10-22T09:44:59.696Z</updated>
   <id>https://momijineko.xyz/</id>
   
   <author>
@@ -17,11 +17,41 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Webdriver 报错 Element not visible 解决方法</title>
+    <link href="https://momijineko.xyz/2019/10/22/Webdriver-%E6%8A%A5%E9%94%99-Element-not-visible-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"/>
+    <id>https://momijineko.xyz/2019/10/22/Webdriver-报错-Element-not-visible-解决方法/</id>
+    <published>2019-10-22T09:37:44.000Z</published>
+    <updated>2019-10-22T09:44:59.696Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li><p>首先排除是否是页面未加载完成的问题。页面响应时间比较慢，导致定位的元素还没加载出来，就会报错ElementNotVisible，这时可以在代码里加上一定的等待时间，如：<code>Thread.sleep(3000)</code> 。</p></li><li><p>其次排除是否是定位有问题，可以用chrome浏览器的xpath healper工具来验证 <img alt="图1" data-src="1.png">如上图，写的xpath能够定位到页面中相应的元素，定位到的元素黄色显示。</p><a id="more"></a></li><li><p>如果用xpath healper确定能定位到元素，但是跑用例的时候还是报元素不可见异常，这可能是由于用@class属性来定位，特别是class中含有复合类的定位时，也可能会报这个错误，这时可以用其它标签或属性来定位，也可以用xpath的绝对路径来定位</p></li><li><p>上面两步还不能解决的话，就可以检查该元素的样式或父级及以上元素是否含有不可显示属性，需要检查元素是否具备如下特性：</p><blockquote><p>visibility!= hidden<br>display != none (is also checked against every parent element)<br>opacity != 0 (in rc2 this is no longer checked for clicking an element)<br>height and width are both &gt; 0<br>for an input, the attribute type != hidden </p><p>如果有不符上面的特性之一，那么就用js脚本来处理，用js操作元素参考博客：<a href="http://blog.csdn.net/galen2016/article/details/56847545" target="_blank" rel="noopener">http://blog.csdn.net/galen2016/article/details/56847545</a></p></blockquote></li><li><p>还有一种情况，就是选取元素的时候，可能存在两个相同的，但一次只会用一个，这两个区别就有一个样式的属性是不可见的，这个时候选取元素时要去掉不可见属性，如下例子：<img alt="图2" data-src="2.png"><br> 如上图，启用流程按钮滑到右边时，该元素增加了display:none属性，此时如要向左滑可以如下方法来定位 </p> <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WebElement label = driver.findElement(By.xpath(“//div[@class=’el-switch__label el-switch__label’ and not(contains(@style,’display:none’))]”));</span><br></pre></td></tr></table></figure></li></ol><ol start="6"><li>最后，可能是编写脚本流程没有按照正常的操作步骤来进行,导致操作的元素没有在当前页面。</li></ol><blockquote><p><strong>原作者：</strong><a href="https://blog.csdn.net/galen2016" target="_blank" rel="noopener">灵枢_</a><br><strong>原文链接：</strong><a href="https://www.baidu.com/link?url=u0jn3R7xotsUtIrPQkiJw2gpH5Nr1Hvp_vP1ouaqaePGEom8hcGXIwL_LPpQ5pndVR7dhRa1cE8E8C-yjZ9_DNgnSKGS72Z3He9uXv9_bn7&wd=&eqid=8cfcaae30004d6ef000000025daeca50" target="_blank" rel="noopener">【WebDriver】解决<em>ElementNotVisibleException</em>方法总结…_CSDN博客</a></p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      &lt;ol&gt;
+&lt;li&gt;&lt;p&gt;首先排除是否是页面未加载完成的问题。页面响应时间比较慢，导致定位的元素还没加载出来，就会报错ElementNotVisible，这时可以在代码里加上一定的等待时间，如：&lt;code&gt;Thread.sleep(3000)&lt;/code&gt; 。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;其次排除是否是定位有问题，可以用chrome浏览器的xpath healper工具来验证 &lt;img alt=&quot;图1&quot; data-src=&quot;1.png&quot;&gt;如上图，写的xpath能够定位到页面中相应的元素，定位到的元素黄色显示。&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;
+    
+    </summary>
+    
+    
+      <category term="软件测试" scheme="https://momijineko.xyz/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/"/>
+    
+    
+      <category term="自动化测试" scheme="https://momijineko.xyz/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/"/>
+    
+      <category term="selenium" scheme="https://momijineko.xyz/tags/selenium/"/>
+    
+      <category term="chromedriver" scheme="https://momijineko.xyz/tags/chromedriver/"/>
+    
+  </entry>
+  
+  <entry>
     <title>测试用例编写顺序和要点</title>
     <link href="https://momijineko.xyz/2019/10/21/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E6%80%BB%E7%BB%93/"/>
     <id>https://momijineko.xyz/2019/10/21/测试用例总结/</id>
     <published>2019-10-21T05:12:04.000Z</published>
-    <updated>2019-10-21T06:48:21.152Z</updated>
+    <updated>2019-10-21T06:59:42.273Z</updated>
     
     <content type="html"><![CDATA[<p>记录自己在软件测试的学习过程中的要点</p><a id="more"></a><hr><h4 id="模块或功能点开头"><a href="#模块或功能点开头" class="headerlink" title="模块或功能点开头"></a>模块或功能点开头</h4><ul><li>在编写模块非首页或登录页时，第一条用例应该是<ul><li><strong>导航栏有效性验证</strong>：跳转到相应页面</li></ul></li><li>在模块中每个会跳转新页面或弹窗的功能点，开头三条用例：<ul><li>功能测试<ul><li><strong>按钮/文本链接有效性验证</strong>：跳转到页面或弹出窗口</li><li><strong>文字控件显示验证</strong>：描述当前页面的显示内容<ul><li>Title</li><li>面包屑（如果有）</li><li>文字和控件显示（如果有）</li><li>导航栏高亮显示（如果有）</li><li>列表字段（如果为列表页）</li><li>按钮显示（如果有）</li></ul></li><li>如果含<span style="background: yellow">多角色权限</span>，应该拆开编写</li><li>如果含<span style="background: yellow">列表</span>，应该有数据和无数据分开编写</li></ul></li><li>UI测试<ul><li><strong>布局配色合理性验证</strong>：布局美观，配色合理</li><li><strong>文字显示正确性验证</strong>：文字正确无错漏</li></ul></li></ul></li><li>列表页：<ul><li>页码选择器：<ul><li><strong>各个按钮的有效性验证</strong></li><li><strong>首页时上一页按钮不可用验证</strong></li><li><strong>末页时下一页按钮不可用验证</strong></li></ul></li><li>排序：<ul><li><strong>排序正确性验证</strong>：列表按某种规则升序中降序显示全部信息</li></ul></li></ul></li></ul><h4 id="查询功能点"><a href="#查询功能点" class="headerlink" title="查询功能点"></a>查询功能点</h4><ul><li>控件测试：<ul><li><strong>下拉框列表值正确性验证</strong>：下拉列表显示blablabla</li><li><strong>日历控件正确性验证</strong>：日期默认为今天，可选择blablabla，需求说明书已说明</li></ul></li><li>具体的查询：先测试不输入查询条件的情况，再逐个测试单条件，再测试组合条件<ul><li><strong>不输入查询条件，进行查询</strong>：列表显示所有信息</li><li><strong>从下拉框到文本框单条件依次输入，进行查询</strong>：列表显示相应的信息</li><li><strong>输入全部查询条件，进行查询</strong>：同上条</li><li>若文本框可进行模糊查询，应该拆分成==模糊查询和精确查询==两种情况</li></ul></li></ul><h4 id="具体的功能测试"><a href="#具体的功能测试" class="headerlink" title="具体的功能测试"></a>具体的功能测试</h4><p>采用<span style="background: yellow">等价类划分</span>和<span style="background: yellow">边界值分析</span>等白盒测试方法进行编写，无效等价类严格按有效等价类（与或非）取反得到</p><h4 id="模块或功能点结尾"><a href="#模块或功能点结尾" class="headerlink" title="模块或功能点结尾"></a>模块或功能点结尾</h4><ul><li>弹窗：<ul><li><strong>取消按钮有效性验证</strong>：关闭弹窗，返回上一页</li><li><strong>x按钮（若有）有效性验证</strong>：同上</li><li><span style="background: yellow">确定/提交等按钮不需要进行单独验证</span></li></ul></li><li>状态管理：<ul><li><strong>启用按钮有效性验证</strong></li><li><strong>禁用按钮有效性验证</strong></li></ul></li></ul>]]></content>
     
