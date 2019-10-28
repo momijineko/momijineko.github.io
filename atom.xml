@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://momijineko.xyz/"/>
-  <updated>2019-10-28T05:46:51.251Z</updated>
+  <updated>2019-10-28T08:26:48.258Z</updated>
   <id>https://momijineko.xyz/</id>
   
   <author>
@@ -21,15 +21,15 @@
     <link href="https://momijineko.xyz/2019/10/28/selenium-%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95%E4%BA%8C/"/>
     <id>https://momijineko.xyz/2019/10/28/selenium-踩坑记录二/</id>
     <published>2019-10-28T03:47:51.000Z</published>
-    <updated>2019-10-28T05:46:51.251Z</updated>
+    <updated>2019-10-28T08:26:48.258Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p><strong>不要频繁使用<code>xpath</code>和<code>css selector</code></strong></p><h5 id="不要频繁使用xpath和css-selector"><a href="#不要频繁使用xpath和css-selector" class="headerlink" title="不要频繁使用xpath和css selector"></a>不要频繁使用<code>xpath</code>和<code>css selector</code></h5><h3 id="不要频繁使用xpath和css-selector-1"><a href="#不要频繁使用xpath和css-selector-1" class="headerlink" title="不要频繁使用xpath和css selector"></a>不要频繁使用<code>xpath</code>和<code>css selector</code></h3></blockquote><a id="more"></a><p>能用<code>id</code>就用<code>id</code>，有<code>name</code>用<code>name</code>，没有的话用<code>classname</code>，甚至<code>linktext</code>、<code>tagname</code>都没有的话最后再去选择采用<code>xpath</code>或者<code>css selector</code>，或者采用其他的复合的定位方法进行定位。</p><p><code>xpath</code>定位比较浪费资源，而且它可能会出现一些难以预料到的错误，比如定位元素偏移等。</p><hr><h3 id="多用延时"><a href="#多用延时" class="headerlink" title="多用延时"></a>多用延时</h3><p>在编写测试用例的时候，可能编写的脚本逻辑完全正确，但因为不知道哪里的原因这个脚本跑不通。这个时候，可以在报错或者响应超时的地方适当的加入延时方法，不用太长，一秒钟左右就可以。之后再跑一遍可能就会发现脚本能顺利执行了</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 语句</span></span><br><span class="line">sleep(<span class="number">1</span>)</span><br><span class="line"><span class="comment"># 语句</span></span><br></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Thread.sleep(<span class="number">800</span>) <span class="comment">// 需要抛出异常</span></span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<blockquote><p><strong>不要频繁使用<code>xpath</code>和<code>css selector</code></strong></p><h4 id="不要频繁使用xpath和css-selector"><a href="#不要频繁使用xpath和css-selector" class="headerlink" title="不要频繁使用xpath和css selector"></a>不要频繁使用<code>xpath</code>和<code>css selector</code></h4><h3 id="不要频繁使用xpath和css-selector-1"><a href="#不要频繁使用xpath和css-selector-1" class="headerlink" title="不要频繁使用xpath和css selector"></a>不要频繁使用<code>xpath</code>和<code>css selector</code></h3></blockquote><a id="more"></a><p>能用<code>id</code>就用<code>id</code>，有<code>name</code>用<code>name</code>，没有的话用<code>classname</code>，甚至<code>linktext</code>、<code>tagname</code>都没有的话最后再去选择采用<code>xpath</code>或者<code>css selector</code>，或者采用其他的复合的定位方法进行定位。</p><p><code>xpath</code>定位比较浪费资源，而且它可能会出现一些难以预料到的错误，比如定位元素偏移等。</p><hr><h3 id="多用延时"><a href="#多用延时" class="headerlink" title="多用延时"></a>多用延时</h3><p>在编写测试用例的时候，可能编写的脚本逻辑完全正确，但因为不知道哪里的原因这个脚本跑不通。这个时候，可以在报错或者响应超时的地方适当的加入延时方法，不用太长，一秒钟左右就可以。之后再跑一遍可能就会发现脚本能顺利执行了</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 语句</span></span><br><span class="line">sleep(<span class="number">1</span>)</span><br><span class="line"><span class="comment"># 语句</span></span><br></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Thread.sleep(<span class="number">800</span>) <span class="comment">// 需要抛出异常</span></span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
       &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;不要频繁使用&lt;code&gt;xpath&lt;/code&gt;和&lt;code&gt;css selector&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;h5 id=&quot;不要频繁使用xpath和css-selector&quot;&gt;&lt;a href=&quot;#不要频繁使用xpath和css-selector&quot; class=&quot;headerlink&quot; title=&quot;不要频繁使用xpath和css selector&quot;&gt;&lt;/a&gt;不要频繁使用&lt;code&gt;xpath&lt;/code&gt;和&lt;code&gt;css selector&lt;/code&gt;&lt;/h5&gt;&lt;h3 id=&quot;不要频繁使用xpath和css-selector-1&quot;&gt;&lt;a href=&quot;#不要频繁使用xpath和css-selector-1&quot; class=&quot;headerlink&quot; title=&quot;不要频繁使用xpath和css selector&quot;&gt;&lt;/a&gt;不要频繁使用&lt;code&gt;xpath&lt;/code&gt;和&lt;code&gt;css selector&lt;/code&gt;&lt;/h3&gt;&lt;/blockquote&gt;
+&lt;h4 id=&quot;不要频繁使用xpath和css-selector&quot;&gt;&lt;a href=&quot;#不要频繁使用xpath和css-selector&quot; class=&quot;headerlink&quot; title=&quot;不要频繁使用xpath和css selector&quot;&gt;&lt;/a&gt;不要频繁使用&lt;code&gt;xpath&lt;/code&gt;和&lt;code&gt;css selector&lt;/code&gt;&lt;/h4&gt;&lt;h3 id=&quot;不要频繁使用xpath和css-selector-1&quot;&gt;&lt;a href=&quot;#不要频繁使用xpath和css-selector-1&quot; class=&quot;headerlink&quot; title=&quot;不要频繁使用xpath和css selector&quot;&gt;&lt;/a&gt;不要频繁使用&lt;code&gt;xpath&lt;/code&gt;和&lt;code&gt;css selector&lt;/code&gt;&lt;/h3&gt;&lt;/blockquote&gt;
     
     </summary>
     
@@ -86,7 +86,7 @@
       &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;首先排除是否是页面未加载完成的问题。页面响应时间比较慢，导致定位的元素还没加载出来，就会报错ElementNotVisible，这时可以在代码里加上一定的等待时间，如：&lt;code&gt;Thread.sleep(3000)&lt;/code&gt; 。&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;其次排除是否是定位有问题，可以用chrome浏览器的xpath healper工具来验证&lt;img title=&quot;xpath healper&quot; data-src=&quot;/2019/10/22/Webdriver-报错-Element-not-visible-解决方法/1.png&quot;&gt;如上图，写的xpath能够定位到页面中相应的元素，定位到的元素黄色显示。&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;
+&lt;li&gt;&lt;p&gt;其次排除是否是定位有问题，可以用chrome浏览器的xpath healper工具来验证&lt;img title=&quot;xpath healper&quot; data-src=&quot;/2019/10/22/Webdriver-报错-Element-not-visible-解决方法/1.png&quot;&gt;如上图，写的xpath能够定位到页面中相应的元素，定位到的元素黄色显示。&lt;/p&gt;
     
     </summary>
     
