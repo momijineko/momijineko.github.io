@@ -86,7 +86,7 @@
       &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;首先排除是否是页面未加载完成的问题。页面响应时间比较慢，导致定位的元素还没加载出来，就会报错ElementNotVisible，这时可以在代码里加上一定的等待时间，如：&lt;code&gt;Thread.sleep(3000)&lt;/code&gt; 。&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;其次排除是否是定位有问题，可以用chrome浏览器的xpath healper工具来验证&lt;img title=&quot;xpath healper&quot; data-src=&quot;/2019/10/22/Webdriver-报错-Element-not-visible-解决方法/1.png&quot;&gt;如上图，写的xpath能够定位到页面中相应的元素，定位到的元素黄色显示。&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;其次排除是否是定位有问题，可以用chrome浏览器的xpath healper工具来验证&lt;img src=&quot;/2019/10/22/Webdriver-报错-Element-not-visible-解决方法/1.png&quot; title=&quot;xpath healper&quot;&gt;如上图，写的xpath能够定位到页面中相应的元素，定位到的元素黄色显示。&lt;/p&gt;
     
     </summary>
     
