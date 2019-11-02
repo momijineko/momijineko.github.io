@@ -51,7 +51,7 @@
 </script>
 
   <meta name="description" content="一个乱七八糟的小站">
-<meta name="keywords" content="前端,Vue,React,HTML,JavaScript">
+<meta name="keywords" content="前端,测试,Test,Vue,React,HTML,JavaScript">
 <meta property="og:type" content="website">
 <meta property="og:title" content="友情链接">
 <meta property="og:url" content="https://momijineko.xyz/link/index.html">
@@ -267,13 +267,10 @@
           
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
-            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
             <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
+            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
         </ul>
         <div class="tab-content">
-            <div class="tab-pane gitalk" id="comment-gitalk">
-              <div class="comments" id="gitalk-container"></div>
-            </div>
             <div class="tab-pane disqusjs" id="comment-disqusjs">
               
   <div class="comments" id="comments">
@@ -282,6 +279,9 @@
     </div>
   </div>
   
+            </div>
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
             </div>
         </div>
       </div>
@@ -358,11 +358,6 @@
       </div>
   </nav>
 </div>
-  <div class="chat motion-element">
-    <a onclick="tidioChatApi.open();"><i class="fa fa-comment"></i>
-    Chat
-  </a>
-  </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
         <a href="https://github.com/momijineko" title="GitHub &rarr; https://github.com/momijineko" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
@@ -542,6 +537,21 @@
 
   
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
+    window.dsqjs = new DisqusJS({
+      api: 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
+      apikey: 'KSohQUysA8orJEMpXQmNHXOn9MLfpHoGbRzCMIpGerwwV9bfCeSixhXuihSr4yq7',
+      shortname: 'momijineko',
+      url: "https://momijineko.xyz/link/index.html",
+      identifier: "link/index.html",
+      title: "友情链接",
+    });
+  }, window.DisqusJS);
+</script>
+
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
 
 <script>
@@ -558,21 +568,6 @@
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
-</script>
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
-
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
-    window.dsqjs = new DisqusJS({
-      api: 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
-      apikey: 'KSohQUysA8orJEMpXQmNHXOn9MLfpHoGbRzCMIpGerwwV9bfCeSixhXuihSr4yq7',
-      shortname: 'momijineko',
-      url: "https://momijineko.xyz/link/index.html",
-      identifier: "link/index.html",
-      title: "友情链接",
-    });
-  }, window.DisqusJS);
 </script>
 
 
