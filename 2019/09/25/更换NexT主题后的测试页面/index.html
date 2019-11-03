@@ -355,10 +355,13 @@
           
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
-            <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
             <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
+            <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
         </ul>
         <div class="tab-content">
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
             <div class="tab-pane disqusjs" id="comment-disqusjs">
               
   <div class="comments" id="comments">
@@ -367,9 +370,6 @@
     </div>
   </div>
   
-            </div>
-            <div class="tab-pane gitalk" id="comment-gitalk">
-              <div class="comments" id="gitalk-container"></div>
             </div>
         </div>
       </div>
@@ -468,8 +468,10 @@
 <!-- 网易云 -->
 <!--
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="https://music.163.com/outchain/player?type=2&id=534066459&auto=1&height=66"></iframe>
--->
+
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=220 height=52 src="https://music.163.com/outchain/player?type=2&id=534066459&auto=1&height=32"></iframe>
+-->
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=240 src="//music.163.com/outchain/player?type=0&id=2923737924&auto=1&height=430"></iframe>
   <div class="cc-license motion-element" itemprop="license">
     <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
   </div>
@@ -626,21 +628,6 @@
 
   
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
-
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
-    window.dsqjs = new DisqusJS({
-      api: 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
-      apikey: 'KSohQUysA8orJEMpXQmNHXOn9MLfpHoGbRzCMIpGerwwV9bfCeSixhXuihSr4yq7',
-      shortname: 'momijineko',
-      url: "https://momijineko.xyz/2019/09/25/更换NexT主题后的测试页面/",
-      identifier: "2019/09/25/更换NexT主题后的测试页面/",
-      title: "更换NexT主题后的测试页面",
-    });
-  }, window.DisqusJS);
-</script>
-
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
 
 <script>
@@ -657,6 +644,21 @@
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
+</script>
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
+    window.dsqjs = new DisqusJS({
+      api: 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
+      apikey: 'KSohQUysA8orJEMpXQmNHXOn9MLfpHoGbRzCMIpGerwwV9bfCeSixhXuihSr4yq7',
+      shortname: 'momijineko',
+      url: "https://momijineko.xyz/2019/09/25/更换NexT主题后的测试页面/",
+      identifier: "2019/09/25/更换NexT主题后的测试页面/",
+      title: "更换NexT主题后的测试页面",
+    });
+  }, window.DisqusJS);
 </script>
 
 

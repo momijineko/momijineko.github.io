@@ -309,7 +309,7 @@
         <ol>
 <li><p>首先排除是否是页面未加载完成的问题。页面响应时间比较慢，导致定位的元素还没加载出来，就会报错ElementNotVisible，这时可以在代码里加上一定的等待时间，如：<code>Thread.sleep(3000)</code> 。</p>
 </li>
-<li><p>其次排除是否是定位有问题，可以用chrome浏览器的xpath healper工具来验证<img title="xpath healper" data-src="/2019/10/22/Webdriver-报错-Element-not-visible-解决方法/1.png">如上图，写的xpath能够定位到页面中相应的元素，定位到的元素黄色显示。</p>
+<li><p>其次排除是否是定位有问题，可以用chrome浏览器的xpath healper工具来验证<img title="xpath healper" data-src="/.xyz//10/22/Webdriver-报错-Element-not-visible-解决方法/1.png">如上图，写的xpath能够定位到页面中相应的元素，定位到的元素黄色显示。</p>
 <a id="more"></a></li>
 <li><p>如果用xpath healper确定能定位到元素，但是跑用例的时候还是报元素不可见异常，这可能是由于用@class属性来定位，特别是class中含有复合类的定位时，也可能会报这个错误，这时可以用其它标签或属性来定位，也可以用xpath的绝对路径来定位</p>
 </li>
@@ -319,7 +319,7 @@
 <p>如果有不符上面的特性之一，那么就用js脚本来处理，用js操作元素参考博客：<a href="http://blog.csdn.net/galen2016/article/details/56847545" target="_blank" rel="noopener">http://blog.csdn.net/galen2016/article/details/56847545</a></p>
 </blockquote>
 </li>
-<li><p>还有一种情况，就是选取元素的时候，可能存在两个相同的，但一次只会用一个，这两个区别就有一个样式的属性是不可见的，这个时候选取元素时要去掉不可见属性，如下例子：<img title="不可见属性" data-src="/2019/10/22/Webdriver-报错-Element-not-visible-解决方法/1.png"><br> 如上图，启用流程按钮滑到右边时，该元素增加了display:none属性，此时如要向左滑可以如下方法来定位 </p>
+<li><p>还有一种情况，就是选取元素的时候，可能存在两个相同的，但一次只会用一个，这两个区别就有一个样式的属性是不可见的，这个时候选取元素时要去掉不可见属性，如下例子：<img title="不可见属性" data-src="/.xyz//10/22/Webdriver-报错-Element-not-visible-解决方法/1.png"><br> 如上图，启用流程按钮滑到右边时，该元素增加了display:none属性，此时如要向左滑可以如下方法来定位 </p>
  <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WebElement label = driver.findElement(By.xpath(“//div[@class=’el-switch__label el-switch__label’ and not(contains(@style,’display:none’))]”));</span><br></pre></td></tr></table></figure>
 
 
@@ -394,10 +394,13 @@
           
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
-            <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
             <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
+            <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
         </ul>
         <div class="tab-content">
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
             <div class="tab-pane disqusjs" id="comment-disqusjs">
               
   <div class="comments" id="comments">
@@ -406,9 +409,6 @@
     </div>
   </div>
   
-            </div>
-            <div class="tab-pane gitalk" id="comment-gitalk">
-              <div class="comments" id="gitalk-container"></div>
             </div>
         </div>
       </div>
@@ -506,8 +506,10 @@
 <!-- 网易云 -->
 <!--
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="https://music.163.com/outchain/player?type=2&id=534066459&auto=1&height=66"></iframe>
--->
+
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=220 height=52 src="https://music.163.com/outchain/player?type=2&id=534066459&auto=1&height=32"></iframe>
+-->
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=240 src="//music.163.com/outchain/player?type=0&id=2923737924&auto=1&height=430"></iframe>
   <div class="cc-license motion-element" itemprop="license">
     <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
   </div>
@@ -664,21 +666,6 @@
 
   
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
-
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
-    window.dsqjs = new DisqusJS({
-      api: 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
-      apikey: 'KSohQUysA8orJEMpXQmNHXOn9MLfpHoGbRzCMIpGerwwV9bfCeSixhXuihSr4yq7',
-      shortname: 'momijineko',
-      url: "https://momijineko.xyz/2019/10/22/Webdriver-报错-Element-not-visible-解决方法/",
-      identifier: "2019/10/22/Webdriver-报错-Element-not-visible-解决方法/",
-      title: "Webdriver 报错 Element not visible 解决方法",
-    });
-  }, window.DisqusJS);
-</script>
-
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
 
 <script>
@@ -695,6 +682,21 @@
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
+</script>
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
+    window.dsqjs = new DisqusJS({
+      api: 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
+      apikey: 'KSohQUysA8orJEMpXQmNHXOn9MLfpHoGbRzCMIpGerwwV9bfCeSixhXuihSr4yq7',
+      shortname: 'momijineko',
+      url: "https://momijineko.xyz/2019/10/22/Webdriver-报错-Element-not-visible-解决方法/",
+      identifier: "2019/10/22/Webdriver-报错-Element-not-visible-解决方法/",
+      title: "Webdriver 报错 Element not visible 解决方法",
+    });
+  }, window.DisqusJS);
 </script>
 
 
