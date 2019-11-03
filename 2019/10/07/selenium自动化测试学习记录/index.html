@@ -58,7 +58,7 @@
 <meta property="og:site_name" content="紅葉猫的部落格">
 <meta property="og:description" content="环境搭建步骤 安装python环境 通过pip下载selenium 打开控制台或者终端 python -m pip install --upgrade pip 更新pip到最新版本 如果安装失败可试添加--user 如 python -m pip install --user --upgrade pip 安装selenium：pip install [-U] selenium    自动化环境搭建">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-08T08:01:55.553Z">
+<meta property="og:updated_time" content="2019-11-03T12:18:51.111Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="selenium自动化测试学习记录">
 <meta name="twitter:description" content="环境搭建步骤 安装python环境 通过pip下载selenium 打开控制台或者终端 python -m pip install --upgrade pip 更新pip到最新版本 如果安装失败可试添加--user 如 python -m pip install --user --upgrade pip 安装selenium：pip install [-U] selenium    自动化环境搭建">
@@ -260,7 +260,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-08 16:01:55" itemprop="dateModified" datetime="2019-10-08T16:01:55+08:00">2019-10-08</time>
+                <time title="修改时间：2019-11-03 20:18:51" itemprop="dateModified" datetime="2019-11-03T20:18:51+08:00">2019-11-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -287,14 +287,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.1k</span>
+              <span>2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>5 分钟</span>
             </span>
 
         </div>
@@ -340,6 +340,19 @@
 </ul>
 <p>比如：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 页面滚动300px</span></span><br><span class="line">driver.execute_script(<span class="string">'window.scrollTo(0, 300)'</span>)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="使用select类进行下拉框值的选择"><a href="#使用select类进行下拉框值的选择" class="headerlink" title="使用select类进行下拉框值的选择"></a>使用<code>select</code>类进行下拉框值的选择</h4><p>可使用<code>selenium</code>提供的<code>select</code>类进行下拉框值的选择</p>
+<p>这里使用的Java语言来描述，演示的是用下拉框文本来选择对应条目<br>也可以用<code>index</code>或<code>value</code>来实现，<code>select</code>类都提供了相应的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Select select = <span class="keyword">new</span> Select(WebElement arg);</span><br><span class="line">select.selectByVisibleText(<span class="string">"下拉选项文本"</span>);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="关于浏览器（含国产）和webdriver等环境配置"><a href="#关于浏览器（含国产）和webdriver等环境配置" class="headerlink" title="关于浏览器（含国产）和webdriver等环境配置"></a>关于浏览器（含国产）和<code>webdriver</code>等环境配置</h4><p>这里以配置国产QQ浏览器为例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过 chrome options 配置QQ浏览器启动</span></span><br><span class="line">ChromeOptions op = <span class="keyword">new</span> ChromeOptions();</span><br><span class="line">op.setBinary(<span class="string">"C:\\Program Files (x86)\\Tencent\\QQBrowser\\QQBrowser.exe"</span>);</span><br><span class="line">WebDriver driver = <span class="keyword">new</span> ChromeDriver(op);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者</span></span><br><span class="line"><span class="comment">// 通过设置环境变量配置QQ浏览器启动</span></span><br><span class="line">System.setProperty(<span class="string">"webdriver.chrome.bin"</span>, <span class="string">"C:\\Program Files (x86)\\Tencent\\QQBrowser\\QQBrowser.exe"</span>);</span><br><span class="line"><span class="comment">// 通过设置环境变量配置 chromedriver</span></span><br><span class="line">System.setProperty(<span class="string">"webdriver.chrome.driver"</span>, <span class="string">"C:\\chromedriver.exe"</span>);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="frame-iframe相关"><a href="#frame-iframe相关" class="headerlink" title="frame/iframe相关"></a>frame/iframe相关</h4><p><code>frame / iframe</code>操作常用的语句：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过 frame / iframe 在页面中的索引进行定位</span></span><br><span class="line">driver.switchTo().frame(<span class="keyword">int</span> index); </span><br><span class="line"><span class="comment">// 通过 frame / iframe 的 id 或 name 进行定位</span></span><br><span class="line">driver.switchTo().frame(String id_or_name);</span><br><span class="line"><span class="comment">// 通过普通方式定位到 frame， 然后再进行跳转</span></span><br><span class="line">driver.switchTo().frame(WebElement element);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 跳转到父层（上一层）框架</span></span><br><span class="line">driver.switchTo().parentFrame();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 跳转到初始内容，即原始层</span></span><br><span class="line">driver.switchTo().defaultContent();</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -400,10 +413,13 @@
           
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
-            <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
             <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
+            <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
         </ul>
         <div class="tab-content">
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
             <div class="tab-pane disqusjs" id="comment-disqusjs">
               
   <div class="comments" id="comments">
@@ -412,9 +428,6 @@
     </div>
   </div>
   
-            </div>
-            <div class="tab-pane gitalk" id="comment-gitalk">
-              <div class="comments" id="gitalk-container"></div>
             </div>
         </div>
       </div>
@@ -458,7 +471,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#环境搭建步骤"><span class="nav-number">1.</span> <span class="nav-text">环境搭建步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模仿鼠标键盘的链式操作ActionChains"><span class="nav-number">2.</span> <span class="nav-text">模仿鼠标键盘的链式操作ActionChains</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#操作js代码进行标签属性的删除"><span class="nav-number">3.</span> <span class="nav-text">操作js代码进行标签属性的删除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#driver-implicitly-wait-与time-sleep-的区别"><span class="nav-number">4.</span> <span class="nav-text">driver.implicitly_wait()与time.sleep()的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行JavaScript语句实现相应操作"><span class="nav-number">5.</span> <span class="nav-text">执行JavaScript语句实现相应操作</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#环境搭建步骤"><span class="nav-number">1.</span> <span class="nav-text">环境搭建步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模仿鼠标键盘的链式操作ActionChains"><span class="nav-number">2.</span> <span class="nav-text">模仿鼠标键盘的链式操作ActionChains</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#操作js代码进行标签属性的删除"><span class="nav-number">3.</span> <span class="nav-text">操作js代码进行标签属性的删除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#driver-implicitly-wait-与time-sleep-的区别"><span class="nav-number">4.</span> <span class="nav-text">driver.implicitly_wait()与time.sleep()的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行JavaScript语句实现相应操作"><span class="nav-number">5.</span> <span class="nav-text">执行JavaScript语句实现相应操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用select类进行下拉框值的选择"><span class="nav-number">6.</span> <span class="nav-text">使用select类进行下拉框值的选择</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关于浏览器（含国产）和webdriver等环境配置"><span class="nav-number">7.</span> <span class="nav-text">关于浏览器（含国产）和webdriver等环境配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#frame-iframe相关"><span class="nav-number">8.</span> <span class="nav-text">frame/iframe相关</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -560,12 +573,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">7k</span>
+    <span title="站点总字数">8k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">18 分钟</span>
+    <span title="站点阅读时长">20 分钟</span>
 </div>
 
 <!-- 网站运行时间的设置 -->
@@ -671,21 +684,6 @@
 
   
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
-
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
-    window.dsqjs = new DisqusJS({
-      api: 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
-      apikey: 'KSohQUysA8orJEMpXQmNHXOn9MLfpHoGbRzCMIpGerwwV9bfCeSixhXuihSr4yq7',
-      shortname: 'momijineko',
-      url: "https://momijineko.xyz/2019/10/07/selenium自动化测试学习记录/",
-      identifier: "2019/10/07/selenium自动化测试学习记录/",
-      title: "selenium自动化测试学习记录",
-    });
-  }, window.DisqusJS);
-</script>
-
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
 
 <script>
@@ -702,6 +700,21 @@
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
+</script>
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
+    window.dsqjs = new DisqusJS({
+      api: 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
+      apikey: 'KSohQUysA8orJEMpXQmNHXOn9MLfpHoGbRzCMIpGerwwV9bfCeSixhXuihSr4yq7',
+      shortname: 'momijineko',
+      url: "https://momijineko.xyz/2019/10/07/selenium自动化测试学习记录/",
+      identifier: "2019/10/07/selenium自动化测试学习记录/",
+      title: "selenium自动化测试学习记录",
+    });
+  }, window.DisqusJS);
 </script>
 
 
