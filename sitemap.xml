@@ -44,7 +44,7 @@
   </url>
   
   <url>
-    <loc>https://momijineko.xyz/2019/09/25/%E6%9B%B4%E6%8D%A2NexT%E4%B8%BB%E9%A2%98%E5%90%8E%E7%9A%84%E6%B5%8B%E8%AF%95%E9%A1%B5%E9%9D%A2/</loc>
+    <loc>https://momijineko.xyz/2019/10/23/selenium-%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95%E4%B8%80/</loc>
     
     <lastmod>2019-11-02T20:20:12.000Z</lastmod>
     
@@ -58,7 +58,7 @@
   </url>
   
   <url>
-    <loc>https://momijineko.xyz/2019/10/23/selenium-%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95%E4%B8%80/</loc>
+    <loc>https://momijineko.xyz/2019/09/25/%E6%9B%B4%E6%8D%A2NexT%E4%B8%BB%E9%A2%98%E5%90%8E%E7%9A%84%E6%B5%8B%E8%AF%95%E9%A1%B5%E9%9D%A2/</loc>
     
     <lastmod>2019-11-02T20:20:12.000Z</lastmod>
     
@@ -86,14 +86,7 @@
   </url>
   
   <url>
-    <loc>https://momijineko.xyz/tags/index.html</loc>
-    
-    <lastmod>2019-11-02T20:20:12.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://momijineko.xyz/schedule/index.html</loc>
+    <loc>https://momijineko.xyz/categories/index.html</loc>
     
     <lastmod>2019-11-02T20:20:12.000Z</lastmod>
     
@@ -107,7 +100,14 @@
   </url>
   
   <url>
-    <loc>https://momijineko.xyz/categories/index.html</loc>
+    <loc>https://momijineko.xyz/schedule/index.html</loc>
+    
+    <lastmod>2019-11-02T20:20:12.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://momijineko.xyz/tags/index.html</loc>
     
     <lastmod>2019-11-02T20:20:12.000Z</lastmod>
     
