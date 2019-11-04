@@ -56,7 +56,7 @@
 <meta property="og:site_name" content="紅葉猫的部落格">
 <meta property="og:description" content="首先排除是否是页面未加载完成的问题。页面响应时间比较慢，导致定位的元素还没加载出来，就会报错ElementNotVisible，这时可以在代码里加上一定的等待时间，如：Thread.sleep(3000) 。  其次排除是否是定位有问题，可以用chrome浏览器的xpath healper工具来验证如上图，写的xpath能够定位到页面中相应的元素，定位到的元素黄色显示。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-23T11:23:26.750Z">
+<meta property="og:updated_time" content="2019-11-04T02:46:24.475Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Webdriver 报错 Element not visible 解决方法">
 <meta name="twitter:description" content="首先排除是否是页面未加载完成的问题。页面响应时间比较慢，导致定位的元素还没加载出来，就会报错ElementNotVisible，这时可以在代码里加上一定的等待时间，如：Thread.sleep(3000) 。  其次排除是否是定位有问题，可以用chrome浏览器的xpath healper工具来验证如上图，写的xpath能够定位到页面中相应的元素，定位到的元素黄色显示。">
@@ -258,7 +258,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-23 19:23:26" itemprop="dateModified" datetime="2019-10-23T19:23:26+08:00">2019-10-23</time>
+                <time title="修改时间：2019-11-04 10:46:24" itemprop="dateModified" datetime="2019-11-04T10:46:24+08:00">2019-11-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -307,7 +307,7 @@
         <ol>
 <li><p>首先排除是否是页面未加载完成的问题。页面响应时间比较慢，导致定位的元素还没加载出来，就会报错ElementNotVisible，这时可以在代码里加上一定的等待时间，如：<code>Thread.sleep(3000)</code> 。</p>
 </li>
-<li><p>其次排除是否是定位有问题，可以用chrome浏览器的xpath healper工具来验证<img title="xpath healper" data-src="/.xyz//10/22/Webdriver-报错-Element-not-visible-解决方法/1.png">如上图，写的xpath能够定位到页面中相应的元素，定位到的元素黄色显示。</p>
+<li><p>其次排除是否是定位有问题，可以用chrome浏览器的xpath healper工具来验证<img alt="xpath healper" data-src="/2019/10/22/Webdriver-报错-Element-not-visible-解决方法/1.png">如上图，写的xpath能够定位到页面中相应的元素，定位到的元素黄色显示。</p>
 <a id="more"></a></li>
 <li><p>如果用xpath healper确定能定位到元素，但是跑用例的时候还是报元素不可见异常，这可能是由于用@class属性来定位，特别是class中含有复合类的定位时，也可能会报这个错误，这时可以用其它标签或属性来定位，也可以用xpath的绝对路径来定位</p>
 </li>
@@ -317,14 +317,14 @@
 <p>如果有不符上面的特性之一，那么就用js脚本来处理，用js操作元素参考博客：<a href="http://blog.csdn.net/galen2016/article/details/56847545" target="_blank" rel="noopener">http://blog.csdn.net/galen2016/article/details/56847545</a></p>
 </blockquote>
 </li>
-<li><p>还有一种情况，就是选取元素的时候，可能存在两个相同的，但一次只会用一个，这两个区别就有一个样式的属性是不可见的，这个时候选取元素时要去掉不可见属性，如下例子：<img title="不可见属性" data-src="/.xyz//10/22/Webdriver-报错-Element-not-visible-解决方法/1.png"><br> 如上图，启用流程按钮滑到右边时，该元素增加了display:none属性，此时如要向左滑可以如下方法来定位 </p>
+<li><p>还有一种情况，就是选取元素的时候，可能存在两个相同的，但一次只会用一个，这两个区别就有一个样式的属性是不可见的，这个时候选取元素时要去掉不可见属性，如下例子：<img alt="图2" data-src="/2019/10/22/Webdriver-报错-Element-not-visible-解决方法/2.png"><br> 如上图，启用流程按钮滑到右边时，该元素增加了display:none属性，此时如要向左滑可以如下方法来定位 </p>
  <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WebElement label = driver.findElement(By.xpath(“//div[@class=’el-switch__label el-switch__label’ and not(contains(@style,’display:none’))]”));</span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ol>
-<ol start="6">
+<ol start="2">
 <li>最后，可能是编写脚本流程没有按照正常的操作步骤来进行,导致操作的元素没有在当前页面。</li>
 </ol>
 <blockquote>
@@ -392,10 +392,13 @@
           
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
-            <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
             <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
+            <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
         </ul>
         <div class="tab-content">
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
             <div class="tab-pane disqusjs" id="comment-disqusjs">
               
   <div class="comments" id="comments">
@@ -404,9 +407,6 @@
     </div>
   </div>
   
-            </div>
-            <div class="tab-pane gitalk" id="comment-gitalk">
-              <div class="comments" id="gitalk-container"></div>
             </div>
         </div>
       </div>
@@ -662,6 +662,24 @@
 
   
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: '97a06f4dc730468ebc2e',
+      clientSecret: '02c84e4bec500209f00a0a97fc24c4a2330915bc',
+      repo: 'momijineko.github.io',
+      owner: 'momijineko',
+      admin: ['momijineko'],
+      id: '520111eeb9c696b4ab3238c76c59183d',
+        language: '',
+      distractionFreeMode: 'false'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
+
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
 
 <script>
@@ -675,24 +693,6 @@
       title: "Webdriver 报错 Element not visible 解决方法",
     });
   }, window.DisqusJS);
-</script>
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
-
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
-    var gitalk = new Gitalk({
-      clientID: '97a06f4dc730468ebc2e',
-      clientSecret: '02c84e4bec500209f00a0a97fc24c4a2330915bc',
-      repo: 'momijineko.github.io',
-      owner: 'momijineko',
-      admin: ['momijineko'],
-      id: '520111eeb9c696b4ab3238c76c59183d',
-        language: 'zh-CN',
-      distractionFreeMode: 'false'
-    });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
 </script>
 
 

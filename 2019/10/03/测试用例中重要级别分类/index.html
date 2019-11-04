@@ -56,7 +56,7 @@
 <meta property="og:site_name" content="紅葉猫的部落格">
 <meta property="og:description" content="在我们的参赛标准里  会影响系统运行的读写功能级别都是高，比如crud功能 查询功能级别是中 UI相关的级别是低，比如页面正确性验证所在的级别就为低  而这个标准并不是业界统一的，不同的公司企业制定的标准不同。  记录自老师的原话 一般以企业给的标准为准，但是各个企业标准不统一，我们比赛的这家企业对这个问题的级别前后说法也不一。一般测试用例的级别区分不太分明，也不太重要，bug的级别非常重要。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-07T06:45:08.597Z">
+<meta property="og:updated_time" content="2019-11-02T20:20:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="测试用例中重要级别分类记录">
 <meta name="twitter:description" content="在我们的参赛标准里  会影响系统运行的读写功能级别都是高，比如crud功能 查询功能级别是中 UI相关的级别是低，比如页面正确性验证所在的级别就为低  而这个标准并不是业界统一的，不同的公司企业制定的标准不同。  记录自老师的原话 一般以企业给的标准为准，但是各个企业标准不统一，我们比赛的这家企业对这个问题的级别前后说法也不一。一般测试用例的级别区分不太分明，也不太重要，bug的级别非常重要。">
@@ -258,7 +258,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-07 14:45:08" itemprop="dateModified" datetime="2019-10-07T14:45:08+08:00">2019-10-07</time>
+                <time title="修改时间：2019-11-03 04:20:12" itemprop="dateModified" datetime="2019-11-03T04:20:12+08:00">2019-11-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -375,10 +375,13 @@
           
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
-            <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
             <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
+            <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
         </ul>
         <div class="tab-content">
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
             <div class="tab-pane disqusjs" id="comment-disqusjs">
               
   <div class="comments" id="comments">
@@ -387,9 +390,6 @@
     </div>
   </div>
   
-            </div>
-            <div class="tab-pane gitalk" id="comment-gitalk">
-              <div class="comments" id="gitalk-container"></div>
             </div>
         </div>
       </div>
@@ -645,6 +645,24 @@
 
   
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: '97a06f4dc730468ebc2e',
+      clientSecret: '02c84e4bec500209f00a0a97fc24c4a2330915bc',
+      repo: 'momijineko.github.io',
+      owner: 'momijineko',
+      admin: ['momijineko'],
+      id: '81aa7be7c78c078f51ac5103b7beef21',
+        language: '',
+      distractionFreeMode: 'false'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
+
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
 
 <script>
@@ -658,24 +676,6 @@
       title: "测试用例中重要级别分类记录",
     });
   }, window.DisqusJS);
-</script>
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
-
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
-    var gitalk = new Gitalk({
-      clientID: '97a06f4dc730468ebc2e',
-      clientSecret: '02c84e4bec500209f00a0a97fc24c4a2330915bc',
-      repo: 'momijineko.github.io',
-      owner: 'momijineko',
-      admin: ['momijineko'],
-      id: '81aa7be7c78c078f51ac5103b7beef21',
-        language: 'zh-CN',
-      distractionFreeMode: 'false'
-    });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
 </script>
 
 
