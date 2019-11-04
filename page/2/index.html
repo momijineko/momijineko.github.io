@@ -12,6 +12,8 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
 
 
 <script id="hexo-configurations">
@@ -227,107 +229,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://momijineko.xyz/2019/10/23/selenium-踩坑记录一/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="http://q.qlogo.cn/headimg_dl?dst_uin=1505085794&spec=640">
-      <meta itemprop="name" content="紅葉猫">
-      <meta itemprop="description" content="一个乱七八糟的小站">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="紅葉猫的部落格">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/23/selenium-踩坑记录一/" class="post-title-link" itemprop="url">selenium 踩坑记录（一） frame/iframe定位</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-10-23 20:34:58" itemprop="dateCreated datePublished" datetime="2019-10-23T20:34:58+08:00">2019-10-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-03 04:20:12" itemprop="dateModified" datetime="2019-11-03T04:20:12+08:00">2019-11-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/软件测试/" itemprop="url" rel="index">
-                    <span itemprop="name">软件测试</span>
-                  </a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>这两天尝试一个页面的自动化测试，看上去很简单的一个页面，然而坑了我两天（</p>
-<p>是这样的，这个页面是个很简单的表单弹窗，但是我死活定位不到这个元素。。。不管用是<code>xpath</code>、<code>id</code>、<code>class</code>等等<br>打开控制台发现原来这是一个iframe弹窗，经过神奇的百度我找到了如下的解决方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.<span class="keyword">switch</span>().frame() <span class="comment">// frame 参数可填frame标签的id或name, 或driver.findElement()</span></span><br></pre></td></tr></table></figure>
-
-<p><del>然而并没有什么卯月</del></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/10/23/selenium-踩坑记录一/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://momijineko.xyz/2019/10/28/selenium-踩坑记录二/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -427,7 +328,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://momijineko.xyz/2019/09/25/更换NexT主题后的测试页面/">
+    <link itemprop="mainEntityOfPage" href="https://momijineko.xyz/2019/10/23/selenium-踩坑记录一/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="http://q.qlogo.cn/headimg_dl?dst_uin=1505085794&spec=640">
@@ -441,7 +342,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/09/25/更换NexT主题后的测试页面/" class="post-title-link" itemprop="url">更换NexT主题后的测试页面</a>
+            <a href="/2019/10/23/selenium-踩坑记录一/" class="post-title-link" itemprop="url">selenium 踩坑记录（一） frame/iframe定位</a>
         </h2>
 
         <div class="post-meta">
@@ -451,7 +352,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-09-25 12:02:33" itemprop="dateCreated datePublished" datetime="2019-09-25T12:02:33+08:00">2019-09-25</time>
+              <time title="创建时间：2019-10-23 20:34:58" itemprop="dateCreated datePublished" datetime="2019-10-23T20:34:58+08:00">2019-10-23</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -460,6 +361,17 @@
                 <span class="post-meta-item-text">更新于</span>
                 <time title="修改时间：2019-11-03 04:20:12" itemprop="dateModified" datetime="2019-11-03T04:20:12+08:00">2019-11-03</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/软件测试/" itemprop="url" rel="index">
+                    <span itemprop="name">软件测试</span>
+                  </a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -467,14 +379,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>85</span>
+              <span>1.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -486,10 +398,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><blockquote>
-<p>1234<br><strong>刚刚更换了NexT的HEXO主题，测试页面</strong></p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">'hello world'</span></span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// ==&gt; out 'hello world'</span></span><br></pre></td></tr></table></figure>
+          <p>这两天尝试一个页面的自动化测试，看上去很简单的一个页面，然而坑了我两天（</p>
+<p>是这样的，这个页面是个很简单的表单弹窗，但是我死活定位不到这个元素。。。不管用是<code>xpath</code>、<code>id</code>、<code>class</code>等等<br>打开控制台发现原来这是一个iframe弹窗，经过神奇的百度我找到了如下的解决方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.<span class="keyword">switch</span>().frame() <span class="comment">// frame 参数可填frame标签的id或name, 或driver.findElement()</span></span><br></pre></td></tr></table></figure>
+
+<p><del>然而并没有什么卯月</del></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/10/23/selenium-踩坑记录一/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -687,6 +608,87 @@
 <p>一般以企业给的标准为准，但是各个企业标准不统一，我们比赛的这家企业对这个问题的级别前后说法也不一。一般测试用例的级别区分不太分明，也不太重要，bug的级别非常重要。</p>
 </blockquote>
 
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://momijineko.xyz/2019/09/25/更换NexT主题后的测试页面/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://q.qlogo.cn/headimg_dl?dst_uin=1505085794&spec=640">
+      <meta itemprop="name" content="紅葉猫">
+      <meta itemprop="description" content="一个乱七八糟的小站">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="紅葉猫的部落格">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/25/更换NexT主题后的测试页面/" class="post-title-link" itemprop="url">更换NexT主题后的测试页面</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-09-25 12:02:33" itemprop="dateCreated datePublished" datetime="2019-09-25T12:02:33+08:00">2019-09-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-03 04:20:12" itemprop="dateModified" datetime="2019-11-03T04:20:12+08:00">2019-11-03</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>85</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><blockquote>
+<p>1234<br><strong>刚刚更换了NexT的HEXO主题，测试页面</strong></p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">'hello world'</span></span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// ==&gt; out 'hello world'</span></span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -915,6 +917,8 @@
   </div>
 
   
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
   <script src="/lib/anime.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
@@ -954,8 +958,8 @@
 
 
 
-  <!-- 背景动画 -->
-  <script type="text/javascript" src="/js/src/particle.js"></script>
+  <!-- 背景动画 
+  <script type="text/javascript" src="/js/src/particle.js"></script> -->
   <!-- 页面点击小红心 -->
   <script type="text/javascript" src="/js/src/love.js"></script>
 </body>
