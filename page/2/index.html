@@ -230,7 +230,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://momijineko.xyz/2019/10/23/selenium-踩坑记录一/">
+    <link itemprop="mainEntityOfPage" href="https://momijineko.xyz/2019/10/07/selenium自动化测试学习记录/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://q.qlogo.cn/headimg_dl?dst_uin=1505085794&spec=640">
@@ -244,7 +244,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/10/23/selenium-踩坑记录一/" class="post-title-link" itemprop="url">selenium 踩坑记录（一） frame/iframe定位</a>
+            <a href="/2019/10/07/selenium自动化测试学习记录/" class="post-title-link" itemprop="url">selenium自动化测试学习记录</a>
         </h2>
 
         <div class="post-meta">
@@ -254,14 +254,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-10-23 20:34:58" itemprop="dateCreated datePublished" datetime="2019-10-23T20:34:58+08:00">2019-10-23</time>
+              <time title="创建时间：2019-10-07 14:43:59" itemprop="dateCreated datePublished" datetime="2019-10-07T14:43:59+08:00">2019-10-07</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-03 04:20:12" itemprop="dateModified" datetime="2019-11-03T04:20:12+08:00">2019-11-03</time>
+                <time title="修改时间：2019-11-05 12:19:02" itemprop="dateModified" datetime="2019-11-05T12:19:02+08:00">2019-11-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -281,14 +281,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.4k</span>
+              <span>2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>5 分钟</span>
             </span>
 
         </div>
@@ -300,199 +300,25 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>这两天尝试一个页面的自动化测试，看上去很简单的一个页面，然而坑了我两天（</p>
-<p>是这样的，这个页面是个很简单的表单弹窗，但是我死活定位不到这个元素。。。不管用是<code>xpath</code>、<code>id</code>、<code>class</code>等等<br>打开控制台发现原来这是一个iframe弹窗，经过神奇的百度我找到了如下的解决方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.<span class="keyword">switch</span>().frame() <span class="comment">// frame 参数可填frame标签的id或name, 或driver.findElement()</span></span><br></pre></td></tr></table></figure>
-
-<p><del>然而并没有什么卯月</del></p>
+          <h4 id="环境搭建步骤"><a href="#环境搭建步骤" class="headerlink" title="环境搭建步骤"></a>环境搭建步骤</h4><ul>
+<li>安装<code>python</code>环境</li>
+<li>通过<code>pip</code>下载<code>selenium</code><ul>
+<li>打开控制台或者终端</li>
+<li><code>python -m pip install --upgrade pip</code> 更新<code>pip</code>到最新版本</li>
+<li>如果安装失败可试添加<code>--user</code> 如 <code>python -m pip install --user --upgrade pip</code></li>
+<li>安装<code>selenium</code>：<code>pip install [-U] selenium</code></li>
+</ul>
+</li>
+</ul>
+<p>自动化环境搭建完毕</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/10/23/selenium-踩坑记录一/#more" rel="contents">
+              <a class="btn" href="/2019/10/07/selenium自动化测试学习记录/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://momijineko.xyz/2019/10/28/selenium-踩坑记录二/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://q.qlogo.cn/headimg_dl?dst_uin=1505085794&spec=640">
-      <meta itemprop="name" content="紅葉猫">
-      <meta itemprop="description" content="一个乱七八糟的小站">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="紅葉猫的部落格">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/28/selenium-踩坑记录二/" class="post-title-link" itemprop="url">selenium 踩坑记录（二） xpath和延时</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-10-28 11:47:51" itemprop="dateCreated datePublished" datetime="2019-10-28T11:47:51+08:00">2019-10-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-03 04:20:12" itemprop="dateModified" datetime="2019-11-03T04:20:12+08:00">2019-11-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/软件测试/" itemprop="url" rel="index">
-                    <span itemprop="name">软件测试</span>
-                  </a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>392</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p><strong>不要频繁使用<code>xpath</code>和<code>css selector</code></strong></p>
-<h4 id="不要频繁使用xpath和css-selector"><a href="#不要频繁使用xpath和css-selector" class="headerlink" title="不要频繁使用xpath和css selector"></a>不要频繁使用<code>xpath</code>和<code>css selector</code></h4><h3 id="不要频繁使用xpath和css-selector-1"><a href="#不要频繁使用xpath和css-selector-1" class="headerlink" title="不要频繁使用xpath和css selector"></a>不要频繁使用<code>xpath</code>和<code>css selector</code></h3></blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/10/28/selenium-踩坑记录二/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://momijineko.xyz/2019/09/25/更换NexT主题后的测试页面/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://q.qlogo.cn/headimg_dl?dst_uin=1505085794&spec=640">
-      <meta itemprop="name" content="紅葉猫">
-      <meta itemprop="description" content="一个乱七八糟的小站">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="紅葉猫的部落格">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/09/25/更换NexT主题后的测试页面/" class="post-title-link" itemprop="url">更换NexT主题后的测试页面</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-09-25 12:02:33" itemprop="dateCreated datePublished" datetime="2019-09-25T12:02:33+08:00">2019-09-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-03 04:20:12" itemprop="dateModified" datetime="2019-11-03T04:20:12+08:00">2019-11-03</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>85</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><blockquote>
-<p>1234<br><strong>刚刚更换了NexT的HEXO主题，测试页面</strong></p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">'hello world'</span></span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// ==&gt; out 'hello world'</span></span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -611,7 +437,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://momijineko.xyz/2019/10/21/测试用例总结/">
+    <link itemprop="mainEntityOfPage" href="https://momijineko.xyz/2019/09/29/ES6相关的新方法记录/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://q.qlogo.cn/headimg_dl?dst_uin=1505085794&spec=640">
@@ -625,7 +451,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/10/21/测试用例总结/" class="post-title-link" itemprop="url">测试用例编写顺序和要点</a>
+            <a href="/2019/09/29/ES6相关的新方法记录/" class="post-title-link" itemprop="url">ES6相关的新方法记录</a>
         </h2>
 
         <div class="post-meta">
@@ -635,7 +461,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-10-21 13:12:04" itemprop="dateCreated datePublished" datetime="2019-10-21T13:12:04+08:00">2019-10-21</time>
+              <time title="创建时间：2019-09-29 11:01:30" itemprop="dateCreated datePublished" datetime="2019-09-29T11:01:30+08:00">2019-09-29</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -650,8 +476,8 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/软件测试/" itemprop="url" rel="index">
-                    <span itemprop="name">软件测试</span>
+                  <a href="/categories/编程/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
                   </a>
                 </span>
             </span>
@@ -662,7 +488,108 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>699</span>
+              <span>400</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>这篇文章记录一些ES6及以上版本JS中新增添常用的一些特性和方法</p>
+<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><hr>
+<h4 id="ES6中用来填充字符串的两个新方法"><a href="#ES6中用来填充字符串的两个新方法" class="headerlink" title="ES6中用来填充字符串的两个新方法"></a>ES6中用来填充字符串的两个新方法</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span>.prototype.padStart(maxLength, fillString = <span class="string">''</span>)</span><br><span class="line"><span class="built_in">String</span>.prototype.padEnd(maxLength, fillString = <span class="string">''</span>)</span><br></pre></td></tr></table></figure>
+
+<p>顾名思义，<code>padStart</code>是在头部填充，而<code>padEnd</code>是在尾部填充，<code>maxLength</code>为字符串的最短长度，字符串低于这个长度就会进行填充，填充内容为<code>fillString</code></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/09/29/ES6相关的新方法记录/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://momijineko.xyz/2019/09/27/Vue过滤器的使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://q.qlogo.cn/headimg_dl?dst_uin=1505085794&spec=640">
+      <meta itemprop="name" content="紅葉猫">
+      <meta itemprop="description" content="一个乱七八糟的小站">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="紅葉猫的部落格">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/27/Vue过滤器的使用/" class="post-title-link" itemprop="url">Vue过滤器的使用</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-09-27 19:53:36" itemprop="dateCreated datePublished" datetime="2019-09-27T19:53:36+08:00">2019-09-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-03 04:20:12" itemprop="dateModified" datetime="2019-11-03T04:20:12+08:00">2019-11-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>848</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -681,15 +608,100 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>记录自己在软件测试的学习过程中的要点</p>
+          <h2 id="过滤器概念"><a href="#过滤器概念" class="headerlink" title="过滤器概念"></a>过滤器概念</h2><blockquote>
+<p>Vue.js 允许你自定义过滤器，可被用做一些常见的文本格式化，过滤器可以用在两个地方：mustache插值和v-bind表达式。过滤器应该被添加在JavaScript表达式的尾部，有“管道”符指示；</p>
+</blockquote>
+<p>代码示例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 过滤器的定义语法</span></span><br><span class="line">&#123;&#123; name | nameope &#125;&#125;  <span class="comment">// mustache插值表达式</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 全局过滤器</span></span><br><span class="line">Vue.filter(<span class="string">'nameope'</span>, data =&gt; &#123;</span><br><span class="line">  <span class="comment">// 在这里做一些对mustache插值数据的渲染前处理</span></span><br><span class="line">  <span class="keyword">return</span> data</span><br><span class="line">  <span class="comment">// return 处理完的数据</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/10/21/测试用例总结/#more" rel="contents">
+              <a class="btn" href="/2019/09/27/Vue过滤器的使用/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
           <!--/noindex-->
         
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://momijineko.xyz/2019/09/25/更换NexT主题后的测试页面/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://q.qlogo.cn/headimg_dl?dst_uin=1505085794&spec=640">
+      <meta itemprop="name" content="紅葉猫">
+      <meta itemprop="description" content="一个乱七八糟的小站">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="紅葉猫的部落格">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/25/更换NexT主题后的测试页面/" class="post-title-link" itemprop="url">更换NexT主题后的测试页面</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-09-25 12:02:33" itemprop="dateCreated datePublished" datetime="2019-09-25T12:02:33+08:00">2019-09-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-03 04:20:12" itemprop="dateModified" datetime="2019-11-03T04:20:12+08:00">2019-11-03</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>85</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><blockquote>
+<p>1234<br><strong>刚刚更换了NexT的HEXO主题，测试页面</strong></p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">'hello world'</span></span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// ==&gt; out 'hello world'</span></span><br></pre></td></tr></table></figure>
       
     </div>
 
