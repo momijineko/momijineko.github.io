@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>AntdPro和umi踩坑问题日记</title>
+      <link href="/2020/03/01/AntdPro%E5%92%8Cumi%E8%B8%A9%E5%9D%91%E9%97%AE%E9%A2%98%E6%97%A5%E8%AE%B0/"/>
+      <url>/2020/03/01/AntdPro%E5%92%8Cumi%E8%B8%A9%E5%9D%91%E9%97%AE%E9%A2%98%E6%97%A5%E8%AE%B0/</url>
+      
+        <content type="html"><![CDATA[<p>这几天使用antdpro框架尝试进行快速开发，其中遇到了不少问题，现记录一下</p><hr><p>2020年2月25日 </p><p>做路由跳转的时候发现，一级路由正常，但是切换到2级路由就会出现 地址更新页面没有跳转。</p><p>解决方法：在父层路由所调用的组件中<strong>一定</strong>要包括<code>router-link</code>管道，</p><p>框架不停提示各种各样的error。</p><p>解决方法：修改<code>.eslintrc.js</code>文件<br>比如默认函数名后一定要空一个空格，但是这和编辑器逻辑是相悖的，所有我们可以把他关掉：<code>rules</code>下<code>&quot;space-before-function-paren&quot;: 0, // 去除函数括号前的空格</code></p><hr><p>2020年2月27日</p><p>react 父子组件传值中，<code>prop.children</code>可实现类似vue中slot插槽的用法</p><p>默认 umi 开启了配置式路由，这个时候如果要用约定式路由可以去<code>.umirc.ts</code>中将<code>route</code>项注释或删除</p><p>面包屑配置文件，直接在相应的组件里引入调用即可</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import &#123; Link &#125; from &apos;react-router-dom&apos;;</span><br><span class="line">import styles from &apos;./index.css&apos;;</span><br><span class="line">import withBreadcrumbs from &apos;react-router-breadcrumbs-hoc&apos;;</span><br><span class="line"></span><br><span class="line">// 路由表重命名</span><br><span class="line">const routes = [</span><br><span class="line">  &#123; path: &apos;/&apos;, breadcrumb: &apos;首页&apos; &#125;,</span><br><span class="line">  &#123; path: &apos;/project&apos;, breadcrumb: &apos;投票管理&apos; &#125;,</span><br><span class="line">  &#123; path: &apos;/about&apos;, breadcrumb: &apos;关于我们&apos; &#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">// 面包屑</span><br><span class="line">const Breadcrumbs = (&#123; breadcrumbs &#125;: any) =&gt; (</span><br><span class="line">  &lt;div className=&#123;styles.breadcrumb&#125;&gt;</span><br><span class="line">    &#123;breadcrumbs.map((&#123; breadcrumb, match &#125;: any, index: number) =&gt; (</span><br><span class="line">      &lt;div className=&quot;bc&quot; key=&#123;match.url&#125;&gt;</span><br><span class="line">        &#123;console.log(breadcrumb)&#125;</span><br><span class="line">        &lt;Link to=&#123;match.url || &apos;&apos;&#125;&gt;</span><br><span class="line">          // 遍历，当路由在上方路由表中存在的时候，返回面包屑显示的名称</span><br><span class="line">          &#123;routes.map(route =&gt; route.path == match.url &amp;&amp; route.breadcrumb)&#125; </span><br><span class="line">        &lt;/Link&gt;</span><br><span class="line">        &#123;index &lt; breadcrumbs.length - 1 &amp;&amp; &apos;　&gt;　&apos;&#125; // 使用的全角空格</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    ))&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">export default withBreadcrumbs()(Breadcrumbs);</span><br></pre></td></tr></table></figure><hr>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> vue </tag>
+            
+            <tag> vue-router </tag>
+            
+            <tag> antd </tag>
+            
+            <tag> react </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>selenium 踩坑记录（二） xpath和延时</title>
       <link href="/2019/10/28/selenium-%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95%E4%BA%8C/"/>
       <url>/2019/10/28/selenium-%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95%E4%BA%8C/</url>
