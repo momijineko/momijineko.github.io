@@ -1,0 +1,587 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>AntdPro和umi踩坑问题日记</title>
+    <url>/2020/03/01/AntdPro%E5%92%8Cumi%E8%B8%A9%E5%9D%91%E9%97%AE%E9%A2%98%E6%97%A5%E8%AE%B0/</url>
+    <content><![CDATA[<p>这几天使用 antdpro 框架尝试进行快速开发，其中遇到了不少问题，现记录一下</p>
+<span id="more"></span>
+
+<hr>
+<h3 id="2020-年-2-月-25-日"><a href="#2020-年-2-月-25-日" class="headerlink" title="2020 年 2 月 25 日"></a>2020 年 2 月 25 日</h3><p>做路由跳转的时候发现，一级路由正常，但是切换到 2 级路由就会出现 地址更新页面没有跳转。</p>
+<p>解决方法：在父层路由所调用的组件中<strong>一定</strong>要包括<code>router-link</code>管道，</p>
+<p>框架不停提示各种各样的 error。</p>
+<p>解决方法：修改<code>.eslintrc.js</code>文件<br>比如默认函数名后一定要空一个空格，但是这和编辑器逻辑是相悖的，所有我们可以把他关掉：<code>rules</code>下<code>&quot;space-before-function-paren&quot;: 0, // 去除函数括号前的空格</code></p>
+<hr>
+<h3 id="2020-年-2-月-27-日"><a href="#2020-年-2-月-27-日" class="headerlink" title="2020 年 2 月 27 日"></a>2020 年 2 月 27 日</h3><p>react 父子组件传值中，<code>prop.children</code>可实现类似 vue 中 slot 插槽的用法</p>
+<p>默认 umi 开启了配置式路由，这个时候如果要用约定式路由可以去<code>.umirc.ts</code>中将<code>route</code>项注释或删除</p>
+<p>面包屑配置文件，直接在相应的组件里引入调用即可</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&quot;react&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Link</span> &#125; <span class="keyword">from</span> <span class="string">&quot;react-router-dom&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> styles <span class="keyword">from</span> <span class="string">&quot;./index.css&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> withBreadcrumbs <span class="keyword">from</span> <span class="string">&quot;react-router-breadcrumbs-hoc&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 路由表重命名</span></span><br><span class="line"><span class="keyword">const</span> routes = [</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&quot;/&quot;</span>, <span class="attr">breadcrumb</span>: <span class="string">&quot;首页&quot;</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&quot;/project&quot;</span>, <span class="attr">breadcrumb</span>: <span class="string">&quot;投票管理&quot;</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&quot;/about&quot;</span>, <span class="attr">breadcrumb</span>: <span class="string">&quot;关于我们&quot;</span> &#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 面包屑</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">Breadcrumbs</span> = (<span class="params">&#123; breadcrumbs &#125;: any</span>) =&gt; (</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#123;styles.breadcrumb&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    &#123;breadcrumbs.map((&#123; breadcrumb, match &#125;: any, index: number) =&gt; (</span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;bc&quot;</span> <span class="attr">key</span>=<span class="string">&#123;match.url&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        &#123;console.log(breadcrumb)&#125;</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">&#123;match.url</span> || &quot;&quot;&#125;&gt;</span></span></span><br><span class="line"><span class="language-xml">          // 遍历，当路由在上方路由表中存在的时候，返回面包屑显示的名称</span></span><br><span class="line"><span class="language-xml">          &#123;routes.map((route) =&gt; route.path == match.url &amp;&amp; route.breadcrumb)&#125;</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">Link</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        &#123;index &lt; breadcrumbs.length - 1 &amp;&amp; &quot;　&gt;　&quot;&#125; // 使用的全角空格</span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    ))&#125;</span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">withBreadcrumbs</span>()(<span class="title class_">Breadcrumbs</span>);</span><br></pre></td></tr></table></figure>
+
+<hr>
+]]></content>
+      <categories>
+        <category>前端开发</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+        <tag>vue-router</tag>
+        <tag>antd</tag>
+        <tag>react</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ES6相关的新方法记录</title>
+    <url>/2019/09/29/ES6%E7%9B%B8%E5%85%B3%E7%9A%84%E6%96%B0%E6%96%B9%E6%B3%95%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<p>这篇文章记录一些 ES6 及以上版本 JS 中新增添常用的一些特性和方法</p>
+<span id="more"></span>
+
+<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><hr>
+<h4 id="ES6-中用来填充字符串的两个新方法"><a href="#ES6-中用来填充字符串的两个新方法" class="headerlink" title="ES6 中用来填充字符串的两个新方法"></a>ES6 中用来填充字符串的两个新方法</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title class_">String</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="title function_">padStart</span>(maxLength, (fillString = <span class="string">&quot;&quot;</span>));</span><br><span class="line"><span class="title class_">String</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="title function_">padEnd</span>(maxLength, (fillString = <span class="string">&quot;&quot;</span>));</span><br></pre></td></tr></table></figure>
+
+<p>顾名思义，<code>padStart</code>是在头部填充，而<code>padEnd</code>是在尾部填充，<code>maxLength</code>为字符串的最短长度，字符串低于这个长度就会进行填充，填充内容为<code>fillString</code></p>
+<p>例如进行日期格式化时：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 模拟日期转换</span></span><br><span class="line"><span class="keyword">let</span> y = <span class="number">2019</span>;</span><br><span class="line"><span class="keyword">let</span> m = <span class="number">9</span>;</span><br><span class="line"><span class="keyword">let</span> d = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">m.<span class="title function_">padStart</span>(<span class="number">2</span>, <span class="string">&quot;0&quot;</span>); <span class="comment">// 头部填充，字符串不足2位前补&#x27;0&#x27;</span></span><br><span class="line">d.<span class="title function_">padEnd</span>(<span class="number">2</span>, <span class="string">&quot;0&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`<span class="subst">$&#123;y&#125;</span>年<span class="subst">$&#123;m&#125;</span>月<span class="subst">$&#123;d&#125;</span>日`</span>);</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>前端开发</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>ES6</tag>
+        <tag>JS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python-unittest单元测试框架</title>
+    <url>/2019/10/08/Python-unittest%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6/</url>
+    <content><![CDATA[<h3 id="什么是unittest"><a href="#什么是unittest" class="headerlink" title="什么是unittest"></a>什么是<code>unittest</code></h3><p><code>unittest</code>是 Python 自带的单元测试框架，可以帮我们完成接口自动化测试、UI 自动化测试。主要用来组织和执行测试单条测试用例组织在一起执行，同时能够满足如果一条测试用例执行失败，后面的测试执行，并且提供了丰富的断言方法，判断测试用例是否通过，最终生成测试结果。</p>
+<span id="more"></span>
+
+<hr>
+<h3 id="unittest核心要素"><a href="#unittest核心要素" class="headerlink" title="unittest核心要素"></a><code>unittest</code>核心要素</h3><p><img data-src="/2019/10/08/Python-unittest%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6/QQ%E5%9B%BE%E7%89%8720191008213516.png" alt="unittest核心要素" title="unittest核心要素"></p>
+<!-- <img data-src="/2019/10/08/Python-unittest%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6/QQ%E5%9B%BE%E7%89%8720191008213516.png" class="" title="unittest核心要素"> -->
+
+<hr>
+<h3 id="unittest测试流程"><a href="#unittest测试流程" class="headerlink" title="unittest测试流程"></a><code>unittest</code>测试流程</h3><ol>
+<li>写好<code>TestCase</code>：一个<code>class</code>继承<code>unittest.TestCase</code>，就是一个测试用例，其中有多个以<code>test</code>开头的方法，每一个方法都在<code>load</code>的时候会生成一个<code>TestCase</code>实例。如果一个<code>class</code>中有四个<code>test</code>开头的方法，最后<code>load</code>到<code>suite</code>中时则有四个测试用例。</li>
+<li>由<code>TestLoader</code>加载<code>TestCase</code>到<code>TestSuite</code>。</li>
+<li>由<code>TextTestRunner</code>来运行<code>TestSuite</code>，运行的结果保存在<code>TextTestResult</code>中。</li>
+</ol>
+<p><strong>说明</strong>：</p>
+<p>通过命令行或者<code>unittest.main()</code>执行时，<code>main()</code>会调用<code>TextTestRunner</code>中的<code>run()</code>来执行，或者可以直接通过<code>TextTestRunner</code>来执行用例。<br><code>Runner</code>执行时，默认将结果输出到控制台，我们可以设置其输出到文件，在文件中查看结果，也可以通过<code>HTMLTestRunner</code>将结果输出到<code>HTML</code>。</p>
+<hr>
+<h3 id="unittest框架使用说明"><a href="#unittest框架使用说明" class="headerlink" title="unittest框架使用说明"></a><code>unittest</code>框架使用说明</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> unittest <span class="comment"># 导入测试框架</span></span><br></pre></td></tr></table></figure>
+
+<p>定义一个继承自<code>unittest.TestCase</code>的测试用例类。</p>
+<p>定义<code>setUp()</code>方法、<code>tearDown()</code>方法、<code>setUpClass()</code>方法、<code>tearDownClass()</code>方法，其中<code>setUp()</code>方法指在每个测试用例方法执行前，都会执行一次；<code>tearDown()</code>方法指在每次测试用例方法执行结束后，都会执行一次；<code>setUpClass()</code>方法指在一个测试用例集执行前只执行一次；<code>tearDownClass()</code>方法指在一个测试用例集执行后只执行一次。</p>
+<p>定义测试用例，名字以<code>test</code>开头。<br>一个测试用例应该只测试一个方面，测试目的和测试内容应很明确。主要调用<code>assertEqual</code>、<code>assertRaises</code>等断言方法判断程序执行结果和预期值是否相符。</p>
+<p>调用<code>unittest.main()</code>启动测试。<br>如果测试未通过，会输出相应的错误提示。如果测试全部通过则不显示任何东西。</p>
+]]></content>
+      <categories>
+        <category>软件测试</category>
+      </categories>
+      <tags>
+        <tag>自动化测试</tag>
+        <tag>selenium</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>React Router V5 学习记录</title>
+    <url>/2022/11/08/React-Router-V5-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<p><code>react-router</code> 是一个由 meta(facebook) 官方维护的专用于 react 应用的路由组件库。</p>
+<p>本文对 v5 版本的 <code>react-router-dom</code> 库基本 api 等和常用知识点进行记录。</p>
+<span id="more"></span>
+
+<hr>
+<h1 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h1><p>类似于 Vue Router，React Router 包括两种路由模式：<code>BrowserRouter</code> 和 <code>HashRouter</code>。</p>
+<ul>
+<li><p>BrowserRouter 模式中，React Router 对 html5 内置的 <code>history</code> 对象进行了封装，路由切换时效果更好；</p>
+</li>
+<li><p>HashRouter 模式中，Router 采用锚点的方式进行页面跳转，对低版本浏览器的兼容更好，但 url 中会多显示一个 <code>/#/</code>。</p>
+</li>
+</ul>
+<p><strong>基本使用流程如下：</strong></p>
+<ol>
+<li>在顶层组件中进行全局路由模式的引入。</li>
+</ol>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">root.<span class="title function_">render</span>(</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">StrictMode</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">BrowserRouter</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">App</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">BrowserRouter</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">StrictMode</span>&gt;</span></span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>使用 <code>Link</code> 组件代替 html 原生的 <code>&lt;a&gt;</code> 标签。</li>
+</ol>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&lt;nav&gt;</span><br><span class="line">  &#123;<span class="comment">/*</span></span><br><span class="line"><span class="comment">    &lt;a href=&quot;#&quot; className=&quot;nav-item&quot;&gt;Home&lt;/a&gt;</span></span><br><span class="line"><span class="comment">  */</span>&#125;</span><br><span class="line">  &lt;<span class="title class_">Link</span> to=<span class="string">&quot;/home className=&quot;</span>nav-item<span class="string">&quot;&gt;</span></span><br><span class="line"><span class="string">    Home</span></span><br><span class="line"><span class="string">  &lt;/Link&gt;</span></span><br><span class="line"><span class="string">  &lt;Link to=&quot;</span>/about<span class="string">&quot; className=&quot;</span>nav-item<span class="string">&quot;&gt;</span></span><br><span class="line"><span class="string">    About</span></span><br><span class="line"><span class="string">  &lt;/Link&gt;</span></span><br><span class="line"><span class="string">&lt;/nav&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>在需要渲染路由组件的位置使用 <code>Route</code> 组件进行路由的注册</li>
+</ol>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&lt;section&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/home&quot;</span> <span class="attr">component</span>=<span class="string">&#123;Home&#125;</span> /&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/about&quot;</span> <span class="attr">component</span>=<span class="string">&#123;About&#125;</span> /&gt;</span></span></span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
+
+<p>即可实现基本的路由功能。</p>
+<p><strong>补充</strong>：当前的组件还不能支持路由跳转后的高亮显示，可将 <code>Link</code> 组件使用 <code>NavLink</code> 进行代替</p>
+<p><code>NavLink</code> 效用：会默认对当前路由所在的路由链接添加一个 <code>active</code> css 类， 也可使用 <code>activeClassName</code> 属性指定其他的 css 类名。</p>
+<p>例：</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&lt;nav&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">NavLink</span> <span class="attr">to</span>=<span class="string">&quot;/home&quot;</span> <span class="attr">activeClassName</span>=<span class="string">&quot;active&quot;</span> <span class="attr">className</span>=<span class="string">&quot;nav-item&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    Home</span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">NavLink</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">NavLink</span> <span class="attr">to</span>=<span class="string">&quot;/about&quot;</span> <span class="attr">activeClassName</span>=<span class="string">&quot;active&quot;</span> <span class="attr">className</span>=<span class="string">&quot;nav-item&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    About</span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">NavLink</span>&gt;</span></span></span><br><span class="line">&lt;/nav&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="进一步优化"><a href="#进一步优化" class="headerlink" title="进一步优化"></a>进一步优化</h1><h2 id="路由重定向"><a href="#路由重定向" class="headerlink" title="路由重定向"></a>路由重定向</h2><p>访问页面时，页面会自动匹配根路径的资源。若根路径无内容时，可通过 <code>Redirect</code> 组件重定向到想要默认展示的页面。</p>
+<p>逻辑上感觉有点类似于 <code>switch case</code>。</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&lt;<span class="title class_">Switch</span>&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/home&quot;</span> <span class="attr">component</span>=<span class="string">&#123;Home&#125;</span> /&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/about&quot;</span> <span class="attr">component</span>=<span class="string">&#123;About&#125;</span> /&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">Redirect</span> <span class="attr">to</span>=<span class="string">&quot;/home&quot;</span> /&gt;</span></span></span><br><span class="line">&lt;/<span class="title class_">Switch</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="路由模糊匹配和精确匹配"><a href="#路由模糊匹配和精确匹配" class="headerlink" title="路由模糊匹配和精确匹配"></a>路由模糊匹配和精确匹配</h2><p>要开启精确匹配，只需在注册路由时添加一个 <code>exact</code> 属性，不过要注意可能会对多级路由的匹配造成负面影响。</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&lt;<span class="title class_">Route</span> exact path=<span class="string">&quot;/home&quot;</span> component=&#123;<span class="title class_">Home</span>&#125; /&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Switch-组件使用"><a href="#Switch-组件使用" class="headerlink" title="Switch 组件使用"></a><code>Switch</code> 组件使用</h2><figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&lt;section&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/test/home&quot;</span> <span class="attr">component</span>=<span class="string">&#123;Home&#125;</span> /&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/test/about&quot;</span> <span class="attr">component</span>=<span class="string">&#123;About&#125;</span> /&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/test/about&quot;</span> <span class="attr">component</span>=<span class="string">&#123;About&#125;</span> /&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/test/about&quot;</span> <span class="attr">component</span>=<span class="string">&#123;About&#125;</span> /&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/test/about&quot;</span> <span class="attr">component</span>=<span class="string">&#123;About&#125;</span> /&gt;</span></span></span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在上述的例子中，我们会发现，当路由跳转到 <code>/test/about</code> 后，第二个 <code>About</code> 组件和后续所有注册的路由都会渲染在页面上。</p>
+<p>为了解决这个问题，可以在路由注册的外层包裹一个 <code>Switch</code> 组件，<code>Switch</code> 组件可在同一 <code>path</code> 匹配成功后就不进行后续重名路由的渲染。</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&lt;section&gt;</span><br><span class="line">  &#123;<span class="comment">/* 使用 switch 后同个 path 的路由匹配成功后只会挂载第一个 */</span>&#125;</span><br><span class="line">  &lt;<span class="title class_">Switch</span>&gt;</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/test/home&quot;</span> <span class="attr">component</span>=<span class="string">&#123;Home&#125;</span> /&gt;</span></span></span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/test/about&quot;</span> <span class="attr">component</span>=<span class="string">&#123;About&#125;</span> /&gt;</span></span></span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/test/about&quot;</span> <span class="attr">component</span>=<span class="string">&#123;About&#125;</span> /&gt;</span></span></span><br><span class="line">  &lt;/<span class="title class_">Switch</span>&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="其他-api"><a href="#其他-api" class="headerlink" title="其他 api"></a>其他 api</h1><h2 id="路由传参"><a href="#路由传参" class="headerlink" title="路由传参"></a>路由传参</h2><p>React Router 的路由传参方式有以下三种：</p>
+<h3 id="通过-params-方式进行传参"><a href="#通过-params-方式进行传参" class="headerlink" title="通过 params 方式进行传参"></a>通过 <code>params</code> 方式进行传参</h3><p>路由注册时，使用类似于后端 <code>restful</code> 路由的方式。</p>
+<p>而在<code>Link</code> 组件直接传递相应的 url。</p>
+<p>在子组件中，通过 <code>props.match.params</code> 就可获取到相应参数。这种方式较为常用。</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&lt;<span class="title class_">Link</span> to=&#123;<span class="string">`/home/message/detail/<span class="subst">$&#123;id&#125;</span>`</span>&#125;&gt;&#123;title&#125;&lt;/<span class="title class_">Link</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/home/message/detail/:id&quot;</span> <span class="attr">component</span>=<span class="string">&#123;Detail&#125;</span> /&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="通过-search（类似-ajax-中显式-query）方式进行传参"><a href="#通过-search（类似-ajax-中显式-query）方式进行传参" class="headerlink" title="通过 search（类似 ajax 中显式 query）方式进行传参"></a>通过 <code>search</code>（类似 ajax 中显式 query）方式进行传参</h3><p>这种方式只需在路由链接中显式传递 query 参数，而路由注册时无需更改。</p>
+<p>在子组件中，通过 <code>props.location.search</code> 就可获取到相应参数，不过获取到的为一个 <code>urlencoded</code> 格式的字符串，需要手动或通过第三方 qs 操作库进行转换。</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&lt;<span class="title class_">Link</span> to=&#123;<span class="string">`/home/message/detail/?id=<span class="subst">$&#123;id&#125;</span>&amp;title=<span class="subst">$&#123;title&#125;</span>`</span>&#125;&gt;&#123;title&#125;&lt;/<span class="title class_">Link</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/home/message/detail&quot;</span> <span class="attr">component</span>=<span class="string">&#123;Detail&#125;</span> /&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="通过-state-方式隐式传参"><a href="#通过-state-方式隐式传参" class="headerlink" title="通过 state 方式隐式传参"></a>通过 <code>state</code> 方式隐式传参</h3><p>需在路由链接中传递包含 <code>pathname</code> 和 <code>state</code> 属性的对象，路由注册时无需更改。</p>
+<p>在子组件中，通过 <code>props.location.state</code> 就可获取到相应参数，但要注意，数据全部保存在浏览器 <code>BOM</code> 对象中的 <code>history</code> 属性上，清除缓存后数据会丢失。</p>
+<p>可在使用 state 时通过逻辑或为其赋一个空对象，避免页面出错。</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&lt;<span class="title class_">Link</span> to=&#123;&#123; <span class="attr">pathname</span>: <span class="string">&quot;/home/message/detail&quot;</span>, <span class="attr">state</span>: &#123; id, title &#125; &#125;&#125;&gt;</span><br><span class="line">  &#123;title&#125;</span><br><span class="line">&lt;/<span class="title class_">Link</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/home/message/detail&quot;</span> <span class="attr">component</span>=<span class="string">&#123;Detail&#125;</span> /&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="replace-模式"><a href="#replace-模式" class="headerlink" title="replace 模式"></a><code>replace</code> 模式</h2><p>和 <code>exact</code> 类似，给路由链接添加一个 <code>replace</code> 属性后即开启 <code>replace</code> 模式，作用就是替换默认的 <code>go</code> 行为，路由跳转会替换当前的历史记录，无法通过后退返回。</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&lt;<span class="title class_">Link</span></span><br><span class="line">  <span class="comment">// replace 模式，替换当前历史记录</span></span><br><span class="line">  replace</span><br><span class="line">  to=&#123;&#123; <span class="attr">pathname</span>: <span class="string">&quot;/home/message/detail&quot;</span>, <span class="attr">state</span>: &#123; id, title &#125; &#125;&#125;</span><br><span class="line">&gt;</span><br><span class="line">  &#123;title&#125;</span><br><span class="line">&lt;/<span class="title class_">Link</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h2><p>根组件在包裹上 Router 组件后，每个路由组件就默认将 <code>history</code>，<code>match</code>，<code>location</code> 等三个属性传递进了 <code>props</code> 中，在自定义函数中直接调用就可实现函数式编程。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">handleReplaceBtnClick</span> = (<span class="params">id, title</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; replace &#125; = props.<span class="property">history</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">replace</span>(<span class="string">`/home/message/detail/<span class="subst">$&#123;id&#125;</span>/<span class="subst">$&#123;title&#125;</span>`</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>前端开发</category>
+      </categories>
+      <tags>
+        <tag>react</tag>
+        <tag>react-router</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Redux和React-Redux学习笔记</title>
+    <url>/2022/11/07/Redux%E5%92%8CReact-Redux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>Redux 作为一个全局的状态管理工具，并不只能在 React 中进行使用，也可将其应用在其他框架甚至是 jQuery 中。</p>
+<p>本文记录一下 Redux 学习中比较晦涩的部分，用以加深印象。</p>
+<span id="more"></span>
+
+<h1 id="纯-Redux"><a href="#纯-Redux" class="headerlink" title="纯 Redux"></a>纯 Redux</h1><h2 id="redux-文件夹基本组成"><a href="#redux-文件夹基本组成" class="headerlink" title="redux 文件夹基本组成"></a>redux 文件夹基本组成</h2><ul>
+<li>store.js</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; legacy_createStore <span class="keyword">as</span> createStore, applyMiddleware &#125; <span class="keyword">from</span> <span class="string">&quot;redux&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> thunk <span class="keyword">from</span> <span class="string">&quot;redux-thunk&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> countReducer <span class="keyword">from</span> <span class="string">&quot;./count.reducer&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = <span class="title function_">createStore</span>(countReducer, <span class="title function_">applyMiddleware</span>(thunk));</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> store;</span><br></pre></td></tr></table></figure>
+
+<p>备注：</p>
+<ol>
+<li><code>redux-thunk</code> 是一个中间件，用于异步 action 获取 <code>dispatch</code> 方法</li>
+<li><code>createStore</code> 方法已经不推荐使用</li>
+</ol>
+<ul>
+<li>action.js</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="variable constant_">PLUS</span>, <span class="variable constant_">SUBTRACT</span> &#125; <span class="keyword">from</span> <span class="string">&quot;./constant&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">createPlusAction</span> = (<span class="params">data</span>) =&gt; (&#123; <span class="attr">type</span>: <span class="variable constant_">PLUS</span>, data &#125;);</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">createSubtractAction</span> = (<span class="params">data</span>) =&gt; (&#123; <span class="attr">type</span>: <span class="variable constant_">SUBTRACT</span>, data &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 异步 action redux-thunk 中间件</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">createPlusAsyncAction</span> = (<span class="params">data, timeout</span>) =&gt; <span class="function">(<span class="params">dispatch</span>) =&gt;</span></span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="title function_">dispatch</span>(<span class="title function_">createPlusAction</span>(data)), timeout);</span><br></pre></td></tr></table></figure>
+
+<p>备注：同步 action 需返回一个对象，用于传递给 reducer，方便代码复用。</p>
+<ul>
+<li>reducer.js</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="variable constant_">PLUS</span>, <span class="variable constant_">SUBTRACT</span> &#125; <span class="keyword">from</span> <span class="string">&quot;./constant&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">countReducer</span> = (<span class="params">prevState = <span class="number">0</span>, &#123; type, data &#125;</span>) =&gt;</span><br><span class="line">  (prevState += (type === <span class="variable constant_">PLUS</span> &amp;&amp; data) || (type === <span class="variable constant_">SUBTRACT</span> &amp;&amp; -data));</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> countReducer;</span><br></pre></td></tr></table></figure>
+
+<p>备注：reducer 是纯函数，基本不会处理数据操作之外的业务逻辑。</p>
+<ul>
+<li>constant.js</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="variable constant_">PLUS</span> = <span class="string">&quot;plus&quot;</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="variable constant_">SUBTRACT</span> = <span class="string">&quot;subtract&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>备注：字面量常量集，方便复用，提升代码的健壮性。</p>
+<h2 id="redux-store-监听"><a href="#redux-store-监听" class="headerlink" title="redux store 监听"></a>redux store 监听</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 组件中</span></span><br><span class="line"><span class="title function_">useEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  store.<span class="title function_">subscribe</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">setCount</span>(store.<span class="title function_">getState</span>());</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;, []);</span><br></pre></td></tr></table></figure>
+
+<p>Redux 默认无法在 React 组件中进行对数据监听，这会导致视图层不会重新渲染。需在生命周期钩子中对其进行订阅。</p>
+<p>也可在入口文件中对入口的 <code>render</code> 方法进行订阅，从而一劳永逸（不过可能会在每次数据更新时可能由于 <code>diffing</code> 算法造成不必要的性能开销）。</p>
+<hr>
+<h1 id="react-redux"><a href="#react-redux" class="headerlink" title="react-redux"></a>react-redux</h1><p><code>react-redux</code> 是由 Redux 官方维护的一套专供与 React 技术栈的 Redux 封装库。</p>
+<p>React-Redux 将 UI 和 数据完全分离开来，分为 UI 组件和容器组件。UI 组件中不会进行任何有关 redux 状态管理的操作，所有 redux 相关操作都提升到容器组件中来进行。</p>
+<h2 id="connect-高阶组件"><a href="#connect-高阶组件" class="headerlink" title="connect 高阶组件"></a><code>connect</code> 高阶组件</h2><p><code>connect</code> 方法的 api：<br><code>connect(mapStateToProps, mapDispatchToProps)(UI)</code></p>
+<ul>
+<li><code>mapStateToProps</code>：需传递一个回调函数，用于给 UI 组件传递 redux 中的 state。</li>
+<li><code>mapDispatchToProps</code>：同上，用于给 UI 组件 redux 中操作 state 的方法（<code>dispatch</code>）。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">connect</span>(</span><br><span class="line">  <span class="function">(<span class="params">state</span>) =&gt;</span> (&#123; <span class="attr">count</span>: state &#125;),</span><br><span class="line">  <span class="function">(<span class="params">dispatch</span>) =&gt;</span> (&#123;</span><br><span class="line">    <span class="attr">plus</span>: <span class="function">(<span class="params">number</span>) =&gt;</span> <span class="title function_">dispatch</span>(<span class="title function_">createPlusAction</span>(number)),</span><br><span class="line">    <span class="attr">subtract</span>: <span class="function">(<span class="params">number</span>) =&gt;</span> <span class="title function_">dispatch</span>(<span class="title function_">createSubtractAction</span>(number)),</span><br><span class="line">    <span class="attr">plusAsync</span>: <span class="function">(<span class="params">number, timeout</span>) =&gt;</span></span><br><span class="line">      <span class="title function_">dispatch</span>(<span class="title function_">createPlusAsyncAction</span>(number, timeout)),</span><br><span class="line">  &#125;)</span><br><span class="line">)(<span class="title class_">CountUI</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="省略写法"><a href="#省略写法" class="headerlink" title="省略写法"></a>省略写法</h2><ul>
+<li>容器组件</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">connect</span>(</span><br><span class="line">  <span class="function">(<span class="params">state</span>) =&gt;</span> (&#123; <span class="attr">count</span>: state &#125;),</span><br><span class="line">  <span class="comment">// 自动分发</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">plus</span>: createPlusAction,</span><br><span class="line">    <span class="attr">subtract</span>: createSubtractAction,</span><br><span class="line">    <span class="attr">plusAsync</span>: createPlusAsyncAction,</span><br><span class="line">  &#125;</span><br><span class="line">)(<span class="title class_">CountUI</span>);</span><br></pre></td></tr></table></figure>
+
+<p>备注：<code>mapDispatchToProps</code> 可传递一个包含创建 action 方法的对象，效果同未简化版本等价，类似于依赖注入。</p>
+<ul>
+<li>入口文件</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="title class_">ReactDOM</span>.<span class="title function_">createRoot</span>(<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;root&quot;</span>)).<span class="title function_">render</span>(</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">React.StrictMode</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    &#123;/* Provider 自动分发 store 给容器组件 */&#125;</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">Provider</span> <span class="attr">store</span>=<span class="string">&#123;store&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">App</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">Provider</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">React.StrictMode</span>&gt;</span></span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>备注：<code>Provider</code> 组件可自动为 <code>App</code> 组件下的容器组件分发 redux 相关 <code>props</code>。</p>
+]]></content>
+      <categories>
+        <category>前端开发</category>
+      </categories>
+      <tags>
+        <tag>react</tag>
+        <tag>redux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Vue过滤器的使用</title>
+    <url>/2019/09/27/Vue%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h2 id="过滤器概念"><a href="#过滤器概念" class="headerlink" title="过滤器概念"></a>过滤器概念</h2><blockquote>
+<p>Vue.js 允许你自定义过滤器，可被用做一些常见的文本格式化，过滤器可以用在两个地方：mustache 插值和 v-bind 表达式。过滤器应该被添加在 JavaScript 表达式的尾部，有“管道”符指示；</p>
+</blockquote>
+<p>代码示例：</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="regexp">//</span> 过滤器的定义语法</span><br><span class="line">&#123;&#123;name | nameope&#125;&#125; <span class="regexp">//</span> mustache插值表达式</span><br><span class="line"></span><br><span class="line"><span class="regexp">//</span> 全局过滤器</span><br><span class="line">Vue.filter(<span class="string">&quot;nameope&quot;</span>, (data) =&gt; &#123;</span><br><span class="line">  <span class="regexp">//</span> 在这里做一些对mustache插值数据的渲染前处理</span><br><span class="line">  return data;</span><br><span class="line">  <span class="regexp">//</span> return 处理完的数据</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<p>过滤器中匿名函数的第一个参数是从管道符前接收到的原值，从第二个参数起可以传入需要参与对原值处理的值<br>如：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Vue</span>.<span class="title function_">filter</span>(<span class="string">&quot;nameope&quot;</span>, <span class="function">(<span class="params">data, arg</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> data + arg;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>过滤器可以多次调用</p>
+<figure class="highlight handlebars"><table><tr><td class="code"><pre><span class="line"><span class="template-variable">&#123;&#123; <span class="name">msg</span> | format | test &#125;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>msg</code> 值会先被 <code>format</code> 处理，处理之后再丢给 <code>test</code> 处理，从左往右依次顺序执行。</p>
+<p>下面是一个对 ISO 时间字符串进行过滤格式化的实例：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 全局的过滤器，进行时间的格式化</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">filter</span>(<span class="string">&#x27;dateFormat&#x27;</span>, <span class="function"><span class="params">dateStr</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 根据给定的时间字符串得到相应的时间</span></span><br><span class="line">  <span class="keyword">let</span> dt = <span class="keyword">new</span> <span class="title class_">Date</span>(dateStr)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> y = dt.<span class="title function_">getFullYear</span>()</span><br><span class="line">  <span class="keyword">let</span> m = dt.<span class="title function_">getMonth</span>() + <span class="number">1</span></span><br><span class="line">  <span class="keyword">let</span> d = dt.<span class="title function_">getDate</span>()</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;y&#125;</span>-<span class="subst">$&#123;m&#125;</span>-<span class="subst">$&#123;d&#125;</span>`</span></span><br></pre></td></tr></table></figure>
+
+<p>私有过滤器：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span><br><span class="line">  <span class="attr">el</span>: <span class="string">&quot;#app&quot;</span>,</span><br><span class="line">  <span class="attr">data</span>: &#123;&#125;,</span><br><span class="line">  <span class="attr">methods</span>: &#123;&#125;,</span><br><span class="line">  <span class="attr">filters</span>: &#123;&#125;, <span class="comment">// 这里是私有过滤器</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>前端开发</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Webdriver 报错 Element not visible 解决方法</title>
+    <url>/2019/10/22/Webdriver-%E6%8A%A5%E9%94%99-Element-not-visible-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<ol>
+<li><p>首先排除是否是页面未加载完成的问题。页面响应时间比较慢，导致定位的元素还没加载出来，就会报错 ElementNotVisible，这时可以在代码里加上一定的等待时间，如：<code>Thread.sleep(3000)</code> 。</p>
+</li>
+<li><p>其次排除是否是定位有问题，可以用 chrome 浏览器的 xpath helper 工具来验证<img data-src="/2019/10/22/Webdriver-%E6%8A%A5%E9%94%99-Element-not-visible-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/1.png" alt="xpath helper" title="xpath helper">如上图，写的 xpath 能够定位到页面中相应的元素，定位到的元素黄色显示。</p>
+<span id="more"></span></li>
+<li><p>如果用 xpath healper 确定能定位到元素，但是跑用例的时候还是报元素不可见异常，这可能是由于用@class 属性来定位，特别是 class 中含有复合类的定位时，也可能会报这个错误，这时可以用其它标签或属性来定位，也可以用 xpath 的绝对路径来定位</p>
+</li>
+<li><p>上面两步还不能解决的话，就可以检查该元素的样式或父级及以上元素是否含有不可显示属性，需要检查元素是否具备如下特性：</p>
+<blockquote>
+<p>visibility!&#x3D; hidden<br>display !&#x3D; none (is also checked against every parent element)<br>opacity !&#x3D; 0 (in rc2 this is no longer checked for clicking an element)<br>height and width are both &gt; 0<br>for an input, the attribute type !&#x3D; hidden</p>
+<p>如果有不符上面的特性之一，那么就用 js 脚本来处理，用 js 操作元素参考博客：<span class="exturl" data-url="aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZ2FsZW4yMDE2L2FydGljbGUvZGV0YWlscy81Njg0NzU0NQ==">http://blog.csdn.net/galen2016/article/details/56847545<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+</li>
+<li><p>还有一种情况，就是选取元素的时候，可能存在两个相同的，但一次只会用一个，这两个区别就有一个样式的属性是不可见的，这个时候选取元素时要去掉不可见属性，如下例子：<img data-src="/2019/10/22/Webdriver-%E6%8A%A5%E9%94%99-Element-not-visible-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/2.png" alt="图2" title="图2"><br>如上图，启用流程按钮滑到右边时，该元素增加了 display:none 属性，此时如要向左滑可以如下方法来定位</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">WebElement label = driver.findElement(By.xpath(“//div[@<span class="keyword">class</span>=’el-switch__label el-switch__label’ <span class="keyword">and</span> <span class="keyword">not</span>(contains(@style,’display:none’))]”));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>最后，可能是编写脚本流程没有按照正常的操作步骤来进行,导致操作的元素没有在当前页面。</p>
+</li>
+</ol>
+<blockquote>
+<p><strong>原作者：</strong><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2dhbGVuMjAxNg==">灵枢_<i class="fa fa-external-link-alt"></i></span> &gt; <strong>原文链接：</strong><a href="https://www.baidu.com/link?url=u0jn3R7xotsUtIrPQkiJw2gpH5Nr1Hvp_vP1ouaqaePGEom8hcGXIwL_LPpQ5pndVR7dhRa1cE8E8C-yjZ9_DNgnSKGS72Z3He9uXv9_bn7&wd=&eqid=8cfcaae30004d6ef000000025daeca50">【WebDriver】解决<em>ElementNotVisibleException</em>方法总结…_CSDN 博客</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>软件测试</category>
+      </categories>
+      <tags>
+        <tag>自动化测试</tag>
+        <tag>selenium</tag>
+        <tag>chromedriver</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>selenium 踩坑记录（一） frame/iframe定位</title>
+    <url>/2019/10/23/selenium-%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95%E4%B8%80/</url>
+    <content><![CDATA[<p>这两天尝试一个页面的自动化测试，看上去很简单的一个页面，然而坑了我两天（</p>
+<p>是这样的，这个页面是个很简单的表单弹窗，但是我死活定位不到这个元素。。。不管用是<code>xpath</code>、<code>id</code>、<code>class</code>等等<br>打开控制台发现原来这是一个iframe弹窗，经过神奇的百度我找到了如下的解决方法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">driver.<span class="keyword">switch</span>().frame() <span class="comment">// frame 参数可填frame标签的id或name, 或driver.findElement()</span></span><br></pre></td></tr></table></figure>
+
+<p><del>然而并没有什么卯月</del></p>
+<span id="more"></span>
+
+<p>报了<code>No frame element found by name or id xxx</code>错误</p>
+<hr>
+<p>我又尝试用<code>id</code>去定位这个弹窗的顶层元素，结果报了<code>No such element</code>错误：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">driver.findElement(By.className(<span class="string">&quot;popWindow-reduction&quot;</span>))</span><br></pre></td></tr></table></figure>
+
+<p>通过自己尝试和翻阅各种资料，发现可能是动态id惹的祸</p>
+<p>于是我尝试用粗暴的<code>Actions</code>（python为<code>ActionChains</code>）键鼠操作进行实验然后成功：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Actions</span> <span class="variable">actions</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Actions</span>(driver);</span><br><span class="line">actions</span><br><span class="line">.click()</span><br><span class="line">.sendKeys(Keys.TAB, <span class="string">&quot;123413551235&quot;</span>, Keys.TAB, Keys.ENTER)</span><br><span class="line">.click()</span><br><span class="line">.sendKeys(Keys.TAB, Keys.ENTER)</span><br><span class="line">.perform();</span><br><span class="line">System.out.println(<span class="string">&quot;执行成功&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>但是这种方法虽然很方便有效，不过看上去太过凌乱了，而且操作都是我实际在页面上进行操作尝试出来的，比较麻烦</p>
+<p>所以我又开始寻找元素定位的方法，最后得到的代码是这样的：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 语句太长所以定义一个变量进行存储</span></span><br><span class="line"><span class="type">WebElement</span> <span class="variable">iframe</span> <span class="operator">=</span> driver.findElement(By.className(<span class="string">&quot;popWindow-box&quot;</span>)).findElement(By.tagName(<span class="string">&quot;iframe&quot;</span>));</span><br><span class="line">driver.switchTo().frame(iframe);    <span class="comment">//切换到frame标签</span></span><br><span class="line">driver.findElement(By.id(<span class="string">&quot;pimNote_content&quot;</span>)).sendKeys(<span class="string">&quot;12345666&quot;</span>);</span><br><span class="line">driver.findElement(By.id(<span class="string">&quot;submitButton&quot;</span>)).click();</span><br><span class="line">driver.switchTo().defaultContent(); <span class="comment">//切换回默认页面</span></span><br><span class="line">driver.findElement(By.xpath(<span class="string">&quot;//*[@id=\&quot;alt1\&quot;]/div[2]/input&quot;</span>)).click();</span><br></pre></td></tr></table></figure>
+
+<p>为什么要用class进行定位呢？具体的我也没有深究过，不过推测可能是因为这个modal对话框是用jq实时生成的，所有组件内部的id定位无效<br>还有我一开始尝试定位的是modal的根标签<code>#popWindow-all</code>，结果并没有成功，可能是因为这个标签没有高度的原因。</p>
+<p>我也是一边摸索着学习一边记录，如果有不正确或不严谨的地方还请各路大佬斧正。</p>
+<hr>
+<p><strong>补充</strong></p>
+<p><code>driver.switchTo().frame()</code>参数并不是只能传<code>id</code>和<code>name</code>以及<code>WebElement</code>，当上述参数都不能正常使用时可以尝试使用<code>index</code>进行定位，比如：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">driver.switchTo().frame(<span class="number">0</span>)	<span class="comment">// 跳转到页面第一个frame</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>软件测试</category>
+      </categories>
+      <tags>
+        <tag>自动化测试</tag>
+        <tag>selenium</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>selenium 踩坑记录（二） xpath和延时</title>
+    <url>/2019/10/28/selenium-%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95%E4%BA%8C/</url>
+    <content><![CDATA[<blockquote>
+<p><strong>不要频繁使用 <code>xpath</code> 和 <code>css selector</code></strong><br><strong>不要频繁使用 <code>xpath</code> 和 <code>css selector</code></strong><br><strong>不要频繁使用 <code>xpath</code> 和 <code>css selector</code></strong></p>
+</blockquote>
+<span id="more"></span>
+
+<h3 id="不用-xpath"><a href="#不用-xpath" class="headerlink" title="不用 xpath"></a>不用 <code>xpath</code></h3><p>能用 <code>id</code> 就用 <code>id</code> ，有 <code>name</code> 用 <code>name</code>，没有的话用 <code>classname</code>，甚至 <code>linktext</code>、<code>tagname</code> 都没有的话最后再去选择采用 <code>xpath</code> 或者 <code>css selector</code>，或者采用其他的复合的定位方法进行定位。</p>
+<p><code>xpath</code> 定位比较浪费资源，而且它可能会出现一些难以预料到的错误，比如定位元素偏移等。</p>
+<hr>
+<h3 id="多用延时"><a href="#多用延时" class="headerlink" title="多用延时"></a>多用延时</h3><p>在编写测试用例的时候，可能编写的脚本逻辑完全正确，但因为不知道哪里的原因这个脚本跑不通。这个时候，可以在报错或者响应超时的地方适当的加入延时方法，不用太长，一秒钟左右就可以。之后再跑一遍可能就会发现脚本能顺利执行了</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 语句</span></span><br><span class="line">sleep(<span class="number">1</span>)</span><br><span class="line"><span class="comment"># 语句</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Thread.sleep(<span class="number">800</span>) <span class="comment">// 需要抛出异常</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>软件测试</category>
+      </categories>
+      <tags>
+        <tag>自动化测试</tag>
+        <tag>selenium</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>selenium自动化测试学习记录</title>
+    <url>/2019/10/07/selenium%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<h4 id="环境搭建步骤"><a href="#环境搭建步骤" class="headerlink" title="环境搭建步骤"></a>环境搭建步骤</h4><ul>
+<li>安装<code>python</code>环境</li>
+<li>通过<code>pip</code>下载<code>selenium</code><ul>
+<li>打开控制台或者终端</li>
+<li><code>python -m pip install --upgrade pip</code> 更新<code>pip</code>到最新版本</li>
+<li>如果安装失败可试添加<code>--user</code> 如 <code>python -m pip install --user --upgrade pip</code></li>
+<li>安装<code>selenium</code>：<code>pip install [-U] selenium</code></li>
+</ul>
+</li>
+</ul>
+<p>自动化环境搭建完毕</p>
+<span id="more"></span>
+
+<hr>
+<h4 id="模仿鼠标键盘的链式操作ActionChains"><a href="#模仿鼠标键盘的链式操作ActionChains" class="headerlink" title="模仿鼠标键盘的链式操作ActionChains"></a>模仿鼠标键盘的链式操作<code>ActionChains</code></h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver <span class="keyword">import</span> ActionChains</span><br><span class="line"></span><br><span class="line">driver = webdriver.Chrome()</span><br><span class="line">driver.get(<span class="string">&#x27;https://www.baidu.com&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定位到文本框</span></span><br><span class="line">inp = driver.find_element_by_id(<span class="string">&#x27;kw&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 链式</span></span><br><span class="line">ActionChains(driver).click().send_keys(<span class="string">&#x27;php是世界上最好的语言&#x27;</span>).context_click().perform()</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="操作js代码进行标签属性的删除"><a href="#操作js代码进行标签属性的删除" class="headerlink" title="操作js代码进行标签属性的删除"></a>操作js代码进行标签属性的删除</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 百度主页</span></span><br><span class="line">inp = driver.find_element(By.PARTIAL_LINK_TEXT, <span class="string">&#x27;主页 &#x27;</span>)</span><br><span class="line"></span><br><span class="line">driver.execute_script(<span class="string">&#x27;arguments[0].removeAttribute(&quot;target&quot;)&#x27;</span>, inp)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="driver-implicitly-wait-与time-sleep-的区别"><a href="#driver-implicitly-wait-与time-sleep-的区别" class="headerlink" title="driver.implicitly_wait()与time.sleep()的区别"></a>driver.implicitly_wait()与time.sleep()的区别</h4><blockquote>
+<p>作者：乐乐熊小妹<br>来源：<span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vbGVsZXhpb25nL3AvOTg3NTE1Ny5odG1s">https://www.cnblogs.com/lelexiong/p/9875157.html<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 隐式等待，5秒钟内只要找到了元素就开始执行，5秒钟未找到超时</span></span><br><span class="line">driver.implictly_wait(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 延时5秒执行</span></span><br><span class="line">time.sleep(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+<p>如何灵活运用这两种方式：</p>
+<p>当某个页面元素变化多，影响多的情况下，用sleep,等页面元素稳定了，再定位。</p>
+<p>如果用implicitly_wait(5)，还没等页面元素稳定后就定位 ，导致定位不准确，比如操作某个元素后，会出现提示框，影响了后面元素的位置，导致定位不准确；所以用sleep,等提示框消失后开始定位</p>
+<hr>
+<h4 id="执行JavaScript语句实现相应操作"><a href="#执行JavaScript语句实现相应操作" class="headerlink" title="执行JavaScript语句实现相应操作"></a>执行<code>JavaScript</code>语句实现相应操作</h4><ul>
+<li><code>driver.execute_script(&#39;&#39;)</code> 在’’里输入js语句</li>
+</ul>
+<p>比如：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 页面滚动300px</span></span><br><span class="line">driver.execute_script(<span class="string">&#x27;window.scrollTo(0, 300)&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="使用select类进行下拉框值的选择"><a href="#使用select类进行下拉框值的选择" class="headerlink" title="使用select类进行下拉框值的选择"></a>使用<code>select</code>类进行下拉框值的选择</h4><p>可使用<code>selenium</code>提供的<code>select</code>类进行下拉框值的选择</p>
+<p>这里使用的Java语言来描述，演示的是用下拉框文本来选择对应条目<br>也可以用<code>index</code>或<code>value</code>来实现，<code>select</code>类都提供了相应的方法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Select</span> <span class="variable">select</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Select</span>(WebElement arg);</span><br><span class="line">select.selectByVisibleText(<span class="string">&quot;下拉选项文本&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="关于浏览器（含国产）和webdriver等环境配置"><a href="#关于浏览器（含国产）和webdriver等环境配置" class="headerlink" title="关于浏览器（含国产）和webdriver等环境配置"></a>关于浏览器（含国产）和<code>webdriver</code>等环境配置</h4><p>这里以配置国产QQ浏览器为例</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 通过 chrome options 配置QQ浏览器启动</span></span><br><span class="line"><span class="type">ChromeOptions</span> <span class="variable">op</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ChromeOptions</span>();</span><br><span class="line">op.setBinary(<span class="string">&quot;C:\\Program Files (x86)\\Tencent\\QQBrowser\\QQBrowser.exe&quot;</span>);</span><br><span class="line"><span class="type">WebDriver</span> <span class="variable">driver</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ChromeDriver</span>(op);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者</span></span><br><span class="line"><span class="comment">// 通过设置环境变量配置QQ浏览器启动</span></span><br><span class="line">System.setProperty(<span class="string">&quot;webdriver.chrome.bin&quot;</span>, <span class="string">&quot;C:\\Program Files (x86)\\Tencent\\QQBrowser\\QQBrowser.exe&quot;</span>);</span><br><span class="line"><span class="comment">// 通过设置环境变量配置 chromedriver</span></span><br><span class="line">System.setProperty(<span class="string">&quot;webdriver.chrome.driver&quot;</span>, <span class="string">&quot;C:\\chromedriver.exe&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="frame-x2F-iframe相关"><a href="#frame-x2F-iframe相关" class="headerlink" title="frame&#x2F;iframe相关"></a>frame&#x2F;iframe相关</h4><p><code>frame / iframe</code>操作常用的语句：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 通过 frame / iframe 在页面中的索引进行定位</span></span><br><span class="line">driver.switchTo().frame(<span class="type">int</span> index); </span><br><span class="line"><span class="comment">// 通过 frame / iframe 的 id 或 name 进行定位</span></span><br><span class="line">driver.switchTo().frame(String id_or_name);</span><br><span class="line"><span class="comment">// 通过普通方式定位到 frame， 然后再进行跳转</span></span><br><span class="line">driver.switchTo().frame(WebElement element);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 跳转到父层（上一层）框架</span></span><br><span class="line">driver.switchTo().parentFrame();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 跳转到初始内容，即原始层</span></span><br><span class="line">driver.switchTo().defaultContent();</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>软件测试</category>
+      </categories>
+      <tags>
+        <tag>自动化测试</tag>
+        <tag>selenium</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>更换NexT主题后的测试页面</title>
+    <url>/2019/09/25/%E6%9B%B4%E6%8D%A2NexT%E4%B8%BB%E9%A2%98%E5%90%8E%E7%9A%84%E6%B5%8B%E8%AF%95%E9%A1%B5%E9%9D%A2/</url>
+    <content><![CDATA[<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><blockquote>
+<p>1234<br><strong>刚刚更换了NexT的HEXO主题，测试页面</strong></p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">&#x27;hello world&#x27;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a) <span class="comment">// ==&gt; out &#x27;hello world&#x27;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>NexT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>测试用例中重要级别分类记录</title>
+    <url>/2019/10/03/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E4%B8%AD%E9%87%8D%E8%A6%81%E7%BA%A7%E5%88%AB%E5%88%86%E7%B1%BB/</url>
+    <content><![CDATA[<p>在我们的参赛标准里</p>
+<ul>
+<li>会影响系统运行的读写功能级别都是高，比如crud功能</li>
+<li>查询功能级别是中</li>
+<li>UI相关的级别是低，比如页面正确性验证所在的级别就为低</li>
+</ul>
+<p>而这个标准并不是业界统一的，不同的公司企业制定的标准不同。</p>
+<blockquote>
+<p>记录自老师的原话</p>
+<p>一般以企业给的标准为准，但是各个企业标准不统一，我们比赛的这家企业对这个问题的级别前后说法也不一。一般测试用例的级别区分不太分明，也不太重要，bug的级别非常重要。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>软件测试</category>
+      </categories>
+      <tags>
+        <tag>功能测试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>测试用例编写顺序和要点</title>
+    <url>/2019/10/21/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<p>记录自己在软件测试的学习过程中的要点</p>
+<span id="more"></span>
+
+<hr>
+<h4 id="模块或功能点开头"><a href="#模块或功能点开头" class="headerlink" title="模块或功能点开头"></a>模块或功能点开头</h4><ul>
+<li>在编写模块非首页或登录页时，第一条用例应该是<ul>
+<li><strong>导航栏有效性验证</strong>：跳转到相应页面</li>
+</ul>
+</li>
+<li>在模块中每个会跳转新页面或弹窗的功能点，开头三条用例：<ul>
+<li>功能测试<ul>
+<li><strong>按钮&#x2F;文本链接有效性验证</strong>：跳转到页面或弹出窗口</li>
+<li><strong>文字控件显示验证</strong>：描述当前页面的显示内容<ul>
+<li>Title</li>
+<li>面包屑（如果有）</li>
+<li>文字和控件显示（如果有）</li>
+<li>导航栏高亮显示（如果有）</li>
+<li>列表字段（如果为列表页）</li>
+<li>按钮显示（如果有）</li>
+</ul>
+</li>
+<li>如果含<span style="background: yellow">多角色权限</span>，应该拆开编写</li>
+<li>如果含<span style="background: yellow">列表</span>，应该有数据和无数据分开编写</li>
+</ul>
+</li>
+<li>UI测试<ul>
+<li><strong>布局配色合理性验证</strong>：布局美观，配色合理</li>
+<li><strong>文字显示正确性验证</strong>：文字正确无错漏</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>列表页：<ul>
+<li>页码选择器：<ul>
+<li><strong>各个按钮的有效性验证</strong></li>
+<li><strong>首页时上一页按钮不可用验证</strong></li>
+<li><strong>末页时下一页按钮不可用验证</strong></li>
+</ul>
+</li>
+<li>排序：<ul>
+<li><strong>排序正确性验证</strong>：列表按某种规则升序中降序显示全部信息</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="查询功能点"><a href="#查询功能点" class="headerlink" title="查询功能点"></a>查询功能点</h4><ul>
+<li>控件测试：<ul>
+<li><strong>下拉框列表值正确性验证</strong>：下拉列表显示blablabla</li>
+<li><strong>日历控件正确性验证</strong>：日期默认为今天，可选择blablabla，需求说明书已说明</li>
+</ul>
+</li>
+<li>具体的查询：先测试不输入查询条件的情况，再逐个测试单条件，再测试组合条件<ul>
+<li><strong>不输入查询条件，进行查询</strong>：列表显示所有信息</li>
+<li><strong>从下拉框到文本框单条件依次输入，进行查询</strong>：列表显示相应的信息</li>
+<li><strong>输入全部查询条件，进行查询</strong>：同上条</li>
+<li>若文本框可进行模糊查询，应该拆分成&#x3D;&#x3D;模糊查询和精确查询&#x3D;&#x3D;两种情况</li>
+</ul>
+</li>
+</ul>
+<h4 id="具体的功能测试"><a href="#具体的功能测试" class="headerlink" title="具体的功能测试"></a>具体的功能测试</h4><p>采用<span style="background: yellow">等价类划分</span>和<span style="background: yellow">边界值分析</span>等白盒测试方法进行编写，无效等价类严格按有效等价类（与或非）取反得到</p>
+<h4 id="模块或功能点结尾"><a href="#模块或功能点结尾" class="headerlink" title="模块或功能点结尾"></a>模块或功能点结尾</h4><ul>
+<li>弹窗：<ul>
+<li><strong>取消按钮有效性验证</strong>：关闭弹窗，返回上一页</li>
+<li><strong>x按钮（若有）有效性验证</strong>：同上</li>
+<li><span style="background: yellow">确定&#x2F;提交等按钮不需要进行单独验证</span></li>
+</ul>
+</li>
+<li>状态管理：<ul>
+<li><strong>启用按钮有效性验证</strong></li>
+<li><strong>禁用按钮有效性验证</strong></li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>软件测试</category>
+      </categories>
+      <tags>
+        <tag>功能测试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux踩坑（一） 部分笔电连接耳机底噪问题解决</title>
+    <url>/2023/01/02/Linux%E8%B8%A9%E5%9D%91%EF%BC%88%E4%B8%80%EF%BC%89-%E9%83%A8%E5%88%86%E7%AC%94%E7%94%B5%E8%BF%9E%E6%8E%A5%E8%80%B3%E6%9C%BA%E5%BA%95%E5%99%AA%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</url>
+    <content><![CDATA[<p>关键词：底噪，白噪音，alsamixer，alsactl 失灵</p>
+<p>我个人的笔记本已经用了几年了，型号比较老，是联想小新锐7000。</p>
+<p>两三年前我用这台电脑装 deepin 的时候就发现连接耳机会有白噪音，而且换用其它的 linux 发行版仍然有这个问题。</p>
+<p>在本文记录一下该问题的解决方案，作个备忘的同时希望能帮到其他出现这个问题的人。</p>
+<span id="more"></span>
+
+<h1 id="之前我的解决方案"><a href="#之前我的解决方案" class="headerlink" title="之前我的解决方案"></a>之前我的解决方案</h1><p>在网上查询后，发现可以通过修改 <code>alsamixer</code> 设置解决</p>
+<p><img data-src="/2023/01/02/Linux%E8%B8%A9%E5%9D%91%EF%BC%88%E4%B8%80%EF%BC%89-%E9%83%A8%E5%88%86%E7%AC%94%E7%94%B5%E8%BF%9E%E6%8E%A5%E8%80%B3%E6%9C%BA%E5%BA%95%E5%99%AA%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/Screenshot_20230102_225352.png" alt="alsamixer"></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">alsamixer <span class="comment"># 进入 alsa 混音器界面</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 按 F6 选择当前设备的声卡，我这里是 HDA Intel PCH</span></span><br><span class="line"><span class="comment"># 方向键移动用 Auto-Mute Mode 项，切换一下启动状态（Disabled ↔ Enable）</span></span><br><span class="line"><span class="comment"># 这个时候你可能就发现烦人的底噪消失了</span></span><br><span class="line"><span class="comment"># ESC 退出混音器</span></span><br><span class="line"></span><br><span class="line">alsactl store   <span class="comment"># 保存当前声卡配置，需要 sudo 权限</span></span><br></pre></td></tr></table></figure>
+
+<p>但是，这种方式有点问题，当设备重启或耳机插拔就会发现底噪又出现了，进入 <code>alsamixer</code> 发现，刚才设置的 <code>Auto-Mute</code> 设置又变回了原样。</p>
+<p>所以当时我写了一个小脚本让它开机自动执行，并且保持耳机一直插在电脑上，但这毕竟治标不治本。</p>
+<p>所以之后不堪其扰，再加上刚需（指打游戏）又装回了 windows 😂</p>
+<hr>
+<h1 id="新的解决方案"><a href="#新的解决方案" class="headerlink" title="新的解决方案"></a>新的解决方案</h1><p>最近又开始在实机上用 Linux 当做我的主力系统，这次我选择装的是 Arch Linux，桌面环境使用的是 KDE Plasma。</p>
+<p>这次装好系统后，发现之前碰到的底噪问题仍然存在，这次在外网翻了半天，终于找到了管用的方法<a href="https://gitlab.freedesktop.org/pulseaudio/pulseaudio/-/issues/1297"><sup>1<sup></a>。</p>
+<p>导致 <code>alsamixer</code> 无法保存设置的原因：<span class="exturl" data-url="aHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL3B1bHNlYXVkaW8vcHVsc2VhdWRpby8tL21lcmdlX3JlcXVlc3RzLzQzMy9kaWZmcz9jb21taXRfaWQ9MTllMzRkOGQ1YmI5MzgwZWQ3MDYwN2IzZjY2MWMyNmRmNmQ0ODM2Yw==">alsa-mixer: disable the Auto-Mute once the system has speaker<i class="fa fa-external-link-alt"></i></span></p>
+<ol>
+<li><p>首先，旧的方案仍然适用，我们先按照上述的命令进行更改</p>
+</li>
+<li><p>修改 alsa 扬声器相关的配置文件：</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用你喜欢的文本编辑器打开下面的路径，需要 sudo 权限，这里使用的是 vim</span></span><br><span class="line">vim /usr/share/pulseaudio/alsa-mixer/paths/analog-output-speaker.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 若你没有使用 pulseaudio 的话，可以试试下面的路径存不存在</span></span><br><span class="line">vim /usr/share/alsa-card-profile/mixer/paths/analog-output-speaker.conf</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/2023/01/02/Linux%E8%B8%A9%E5%9D%91%EF%BC%88%E4%B8%80%EF%BC%89-%E9%83%A8%E5%88%86%E7%AC%94%E7%94%B5%E8%BF%9E%E6%8E%A5%E8%80%B3%E6%9C%BA%E5%BA%95%E5%99%AA%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/Screenshot_20230102_230122.png" alt="注释掉这两行"></p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="comment">; analog-output-speaker.conf</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"><span class="comment">; 找到这两项 Auto-Mute 相关的条目，注释掉</span></span><br><span class="line"><span class="section">[Element Auto-Mute Mode]</span></span><br><span class="line"><span class="comment">; enumeration = select</span></span><br><span class="line"><span class="section">[Option Auto-Mute Mode:Disabled]</span></span><br><span class="line"><span class="comment">; name = analog-output-speaker</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>Reboot &amp;&amp; Enjoy yourself!</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>alsa</tag>
+        <tag>alsamixer</tag>
+        <tag>pulseaudio</tag>
+      </tags>
+  </entry>
+</search>

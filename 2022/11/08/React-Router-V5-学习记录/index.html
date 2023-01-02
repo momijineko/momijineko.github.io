@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://q.qlogo.cn/headimg_dl?dst_uin=1505085794&spec=640">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://q.qlogo.cn/headimg_dl?dst_uin=1505085794&spec=100">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"neko.ren","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.14.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"style":"flat","show_result":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/./public/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="react-router 是一个由 meta(facebook) 官方维护的专用于 react 应用的路由组件库。 本文对 v5 版本的 react-router-dom 库基本 api 等和常用知识点进行记录。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React Router V5 学习记录">
+<meta property="og:url" content="https://neko.ren/2022/11/08/React-Router-V5-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="NEKO.REN">
+<meta property="og:description" content="react-router 是一个由 meta(facebook) 官方维护的专用于 react 应用的路由组件库。 本文对 v5 版本的 react-router-dom 库基本 api 等和常用知识点进行记录。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-08T02:14:22.000Z">
+<meta property="article:modified_time" content="2022-11-08T02:14:22.000Z">
+<meta property="article:author" content="紅葉猫">
+<meta property="article:tag" content="react">
+<meta property="article:tag" content="react-router">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://neko.ren/2022/11/08/React-Router-V5-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://neko.ren/2022/11/08/React-Router-V5-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/","path":"2022/11/08/React-Router-V5-学习记录/","title":"React Router V5 学习记录"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>React Router V5 学习记录 | NEKO.REN</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?be38f647eb65006619b5cca4ed5c0330"></script>
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="NEKO.REN" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">NEKO.REN</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">紅葉猫的部落格</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">20</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">3</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">14</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">基本使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%9B%E4%B8%80%E6%AD%A5%E4%BC%98%E5%8C%96"><span class="nav-number">2.</span> <span class="nav-text">进一步优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E9%87%8D%E5%AE%9A%E5%90%91"><span class="nav-number">2.1.</span> <span class="nav-text">路由重定向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E6%A8%A1%E7%B3%8A%E5%8C%B9%E9%85%8D%E5%92%8C%E7%B2%BE%E7%A1%AE%E5%8C%B9%E9%85%8D"><span class="nav-number">2.2.</span> <span class="nav-text">路由模糊匹配和精确匹配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Switch-%E7%BB%84%E4%BB%B6%E4%BD%BF%E7%94%A8"><span class="nav-number">2.3.</span> <span class="nav-text">Switch 组件使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B6%E4%BB%96-api"><span class="nav-number">3.</span> <span class="nav-text">其他 api</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E4%BC%A0%E5%8F%82"><span class="nav-number">3.1.</span> <span class="nav-text">路由传参</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E8%BF%87-params-%E6%96%B9%E5%BC%8F%E8%BF%9B%E8%A1%8C%E4%BC%A0%E5%8F%82"><span class="nav-number">3.1.1.</span> <span class="nav-text">通过 params 方式进行传参</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E8%BF%87-search%EF%BC%88%E7%B1%BB%E4%BC%BC-ajax-%E4%B8%AD%E6%98%BE%E5%BC%8F-query%EF%BC%89%E6%96%B9%E5%BC%8F%E8%BF%9B%E8%A1%8C%E4%BC%A0%E5%8F%82"><span class="nav-number">3.1.2.</span> <span class="nav-text">通过 search（类似 ajax 中显式 query）方式进行传参</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E8%BF%87-state-%E6%96%B9%E5%BC%8F%E9%9A%90%E5%BC%8F%E4%BC%A0%E5%8F%82"><span class="nav-number">3.1.3.</span> <span class="nav-text">通过 state 方式隐式传参</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#replace-%E6%A8%A1%E5%BC%8F"><span class="nav-number">3.2.</span> <span class="nav-text">replace 模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B"><span class="nav-number">3.3.</span> <span class="nav-text">函数式编程</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="紅葉猫"
+      src="https://q.qlogo.cn/headimg_dl?dst_uin=1505085794&spec=640">
+  <p class="site-author-name" itemprop="name">紅葉猫</p>
+  <div class="site-description" itemprop="description">一个乱七八糟的小站</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21vbWlqaW5la28=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;momijineko"><i class="fab fa-github fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmtvdXlvdW5la28zOUBnbWFpbC5jb20=" title="E-Mail → mailto:kouyouneko39@gmail.com"><i class="fa fa-envelope fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly93ZWliby5jb20vbW9taWppbmVrbw==" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;momijineko"><i class="fab fa-weibo fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS9tb21pamluM2tv" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;momijin3ko"><i class="fab fa-twitter fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly93d3cueW91dHViZS5jb20vY2hhbm5lbC9VQzFkcWJMYUdwVWZ2UTdPM0hmeDM0SWc=" title="YouTube → https:&#x2F;&#x2F;www.youtube.com&#x2F;channel&#x2F;UC1dqbLaGpUfvQ7O3Hfx34Ig"><i class="fab fa-youtube fa-fw"></i></span>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/big/by_nc_sa.svg" alt="Creative Commons"></span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <span class="exturl" data-url="aHR0cHM6Ly93d3cuZGV2emhpLmNvbQ==" title="https:&#x2F;&#x2F;www.devzhi.com">Devzhi's Blog</span>
+            </li>
+            <li class="links-of-blogroll-item">
+              <span class="exturl" data-url="aHR0cHM6Ly93d3cuZGV2bGF1LmNu" title="https:&#x2F;&#x2F;www.devlau.cn">Lau - 在下程序猿</span>
+            </li>
+            <li class="links-of-blogroll-item">
+              <span class="exturl" data-url="aHR0cDovL2FsaWdodC53b3Jr" title="http:&#x2F;&#x2F;alight.work">ALIGHT</span>
+            </li>
+            <li class="links-of-blogroll-item">
+              <span class="exturl" data-url="aHR0cHM6Ly92c3F4Lm5la28ucmVu" title="https:&#x2F;&#x2F;vsqx.neko.ren">红叶猫的工程配布站</span>
+            </li>
+        </ul>
+      </div>
+    </div>
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    相关文章
+  </div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2022/11/07/Redux%E5%92%8CReact-Redux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="bookmark">
+        <time class="popular-posts-time">2022-11-07</time>
+        <br>
+      Redux和React-Redux学习笔记
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2020/03/01/AntdPro%E5%92%8Cumi%E8%B8%A9%E5%9D%91%E9%97%AE%E9%A2%98%E6%97%A5%E8%AE%B0/" rel="bookmark">
+        <time class="popular-posts-time">2020-03-01</time>
+        <br>
+      AntdPro和umi踩坑问题日记
+      </a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://neko.ren/2022/11/08/React-Router-V5-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://q.qlogo.cn/headimg_dl?dst_uin=1505085794&spec=640">
+      <meta itemprop="name" content="紅葉猫">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="NEKO.REN">
+      <meta itemprop="description" content="一个乱七八糟的小站">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="React Router V5 学习记录 | NEKO.REN">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          React Router V5 学习记录
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-11-08 10:14:22" itemprop="dateCreated datePublished" datetime="2022-11-08T10:14:22+08:00">2022-11-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">前端开发</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><code>react-router</code> 是一个由 meta(facebook) 官方维护的专用于 react 应用的路由组件库。</p>
+<p>本文对 v5 版本的 <code>react-router-dom</code> 库基本 api 等和常用知识点进行记录。</p>
+<span id="more"></span>
+
+<hr>
+<h1 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h1><p>类似于 Vue Router，React Router 包括两种路由模式：<code>BrowserRouter</code> 和 <code>HashRouter</code>。</p>
+<ul>
+<li><p>BrowserRouter 模式中，React Router 对 html5 内置的 <code>history</code> 对象进行了封装，路由切换时效果更好；</p>
+</li>
+<li><p>HashRouter 模式中，Router 采用锚点的方式进行页面跳转，对低版本浏览器的兼容更好，但 url 中会多显示一个 <code>/#/</code>。</p>
+</li>
+</ul>
+<p><strong>基本使用流程如下：</strong></p>
+<ol>
+<li>在顶层组件中进行全局路由模式的引入。</li>
+</ol>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">root.<span class="title function_">render</span>(</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">StrictMode</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">BrowserRouter</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">App</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">BrowserRouter</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">StrictMode</span>&gt;</span></span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>使用 <code>Link</code> 组件代替 html 原生的 <code>&lt;a&gt;</code> 标签。</li>
+</ol>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;nav&gt;</span><br><span class="line">  &#123;<span class="comment">/*</span></span><br><span class="line"><span class="comment">    &lt;a href=&quot;#&quot; className=&quot;nav-item&quot;&gt;Home&lt;/a&gt;</span></span><br><span class="line"><span class="comment">  */</span>&#125;</span><br><span class="line">  &lt;<span class="title class_">Link</span> to=<span class="string">&quot;/home className=&quot;</span>nav-item<span class="string">&quot;&gt;</span></span><br><span class="line"><span class="string">    Home</span></span><br><span class="line"><span class="string">  &lt;/Link&gt;</span></span><br><span class="line"><span class="string">  &lt;Link to=&quot;</span>/about<span class="string">&quot; className=&quot;</span>nav-item<span class="string">&quot;&gt;</span></span><br><span class="line"><span class="string">    About</span></span><br><span class="line"><span class="string">  &lt;/Link&gt;</span></span><br><span class="line"><span class="string">&lt;/nav&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>在需要渲染路由组件的位置使用 <code>Route</code> 组件进行路由的注册</li>
+</ol>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;section&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/home&quot;</span> <span class="attr">component</span>=<span class="string">&#123;Home&#125;</span> /&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/about&quot;</span> <span class="attr">component</span>=<span class="string">&#123;About&#125;</span> /&gt;</span></span></span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
+
+<p>即可实现基本的路由功能。</p>
+<p><strong>补充</strong>：当前的组件还不能支持路由跳转后的高亮显示，可将 <code>Link</code> 组件使用 <code>NavLink</code> 进行代替</p>
+<p><code>NavLink</code> 效用：会默认对当前路由所在的路由链接添加一个 <code>active</code> css 类， 也可使用 <code>activeClassName</code> 属性指定其他的 css 类名。</p>
+<p>例：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;nav&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">NavLink</span> <span class="attr">to</span>=<span class="string">&quot;/home&quot;</span> <span class="attr">activeClassName</span>=<span class="string">&quot;active&quot;</span> <span class="attr">className</span>=<span class="string">&quot;nav-item&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    Home</span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">NavLink</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">NavLink</span> <span class="attr">to</span>=<span class="string">&quot;/about&quot;</span> <span class="attr">activeClassName</span>=<span class="string">&quot;active&quot;</span> <span class="attr">className</span>=<span class="string">&quot;nav-item&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    About</span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">NavLink</span>&gt;</span></span></span><br><span class="line">&lt;/nav&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="进一步优化"><a href="#进一步优化" class="headerlink" title="进一步优化"></a>进一步优化</h1><h2 id="路由重定向"><a href="#路由重定向" class="headerlink" title="路由重定向"></a>路由重定向</h2><p>访问页面时，页面会自动匹配根路径的资源。若根路径无内容时，可通过 <code>Redirect</code> 组件重定向到想要默认展示的页面。</p>
+<p>逻辑上感觉有点类似于 <code>switch case</code>。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="title class_">Switch</span>&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/home&quot;</span> <span class="attr">component</span>=<span class="string">&#123;Home&#125;</span> /&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/about&quot;</span> <span class="attr">component</span>=<span class="string">&#123;About&#125;</span> /&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">Redirect</span> <span class="attr">to</span>=<span class="string">&quot;/home&quot;</span> /&gt;</span></span></span><br><span class="line">&lt;/<span class="title class_">Switch</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="路由模糊匹配和精确匹配"><a href="#路由模糊匹配和精确匹配" class="headerlink" title="路由模糊匹配和精确匹配"></a>路由模糊匹配和精确匹配</h2><p>要开启精确匹配，只需在注册路由时添加一个 <code>exact</code> 属性，不过要注意可能会对多级路由的匹配造成负面影响。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="title class_">Route</span> exact path=<span class="string">&quot;/home&quot;</span> component=&#123;<span class="title class_">Home</span>&#125; /&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Switch-组件使用"><a href="#Switch-组件使用" class="headerlink" title="Switch 组件使用"></a><code>Switch</code> 组件使用</h2><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;section&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/test/home&quot;</span> <span class="attr">component</span>=<span class="string">&#123;Home&#125;</span> /&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/test/about&quot;</span> <span class="attr">component</span>=<span class="string">&#123;About&#125;</span> /&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/test/about&quot;</span> <span class="attr">component</span>=<span class="string">&#123;About&#125;</span> /&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/test/about&quot;</span> <span class="attr">component</span>=<span class="string">&#123;About&#125;</span> /&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/test/about&quot;</span> <span class="attr">component</span>=<span class="string">&#123;About&#125;</span> /&gt;</span></span></span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在上述的例子中，我们会发现，当路由跳转到 <code>/test/about</code> 后，第二个 <code>About</code> 组件和后续所有注册的路由都会渲染在页面上。</p>
+<p>为了解决这个问题，可以在路由注册的外层包裹一个 <code>Switch</code> 组件，<code>Switch</code> 组件可在同一 <code>path</code> 匹配成功后就不进行后续重名路由的渲染。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;section&gt;</span><br><span class="line">  &#123;<span class="comment">/* 使用 switch 后同个 path 的路由匹配成功后只会挂载第一个 */</span>&#125;</span><br><span class="line">  &lt;<span class="title class_">Switch</span>&gt;</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/test/home&quot;</span> <span class="attr">component</span>=<span class="string">&#123;Home&#125;</span> /&gt;</span></span></span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/test/about&quot;</span> <span class="attr">component</span>=<span class="string">&#123;About&#125;</span> /&gt;</span></span></span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/test/about&quot;</span> <span class="attr">component</span>=<span class="string">&#123;About&#125;</span> /&gt;</span></span></span><br><span class="line">  &lt;/<span class="title class_">Switch</span>&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="其他-api"><a href="#其他-api" class="headerlink" title="其他 api"></a>其他 api</h1><h2 id="路由传参"><a href="#路由传参" class="headerlink" title="路由传参"></a>路由传参</h2><p>React Router 的路由传参方式有以下三种：</p>
+<h3 id="通过-params-方式进行传参"><a href="#通过-params-方式进行传参" class="headerlink" title="通过 params 方式进行传参"></a>通过 <code>params</code> 方式进行传参</h3><p>路由注册时，使用类似于后端 <code>restful</code> 路由的方式。</p>
+<p>而在<code>Link</code> 组件直接传递相应的 url。</p>
+<p>在子组件中，通过 <code>props.match.params</code> 就可获取到相应参数。这种方式较为常用。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="title class_">Link</span> to=&#123;<span class="string">`/home/message/detail/<span class="subst">$&#123;id&#125;</span>`</span>&#125;&gt;&#123;title&#125;&lt;/<span class="title class_">Link</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/home/message/detail/:id&quot;</span> <span class="attr">component</span>=<span class="string">&#123;Detail&#125;</span> /&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="通过-search（类似-ajax-中显式-query）方式进行传参"><a href="#通过-search（类似-ajax-中显式-query）方式进行传参" class="headerlink" title="通过 search（类似 ajax 中显式 query）方式进行传参"></a>通过 <code>search</code>（类似 ajax 中显式 query）方式进行传参</h3><p>这种方式只需在路由链接中显式传递 query 参数，而路由注册时无需更改。</p>
+<p>在子组件中，通过 <code>props.location.search</code> 就可获取到相应参数，不过获取到的为一个 <code>urlencoded</code> 格式的字符串，需要手动或通过第三方 qs 操作库进行转换。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="title class_">Link</span> to=&#123;<span class="string">`/home/message/detail/?id=<span class="subst">$&#123;id&#125;</span>&amp;title=<span class="subst">$&#123;title&#125;</span>`</span>&#125;&gt;&#123;title&#125;&lt;/<span class="title class_">Link</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/home/message/detail&quot;</span> <span class="attr">component</span>=<span class="string">&#123;Detail&#125;</span> /&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="通过-state-方式隐式传参"><a href="#通过-state-方式隐式传参" class="headerlink" title="通过 state 方式隐式传参"></a>通过 <code>state</code> 方式隐式传参</h3><p>需在路由链接中传递包含 <code>pathname</code> 和 <code>state</code> 属性的对象，路由注册时无需更改。</p>
+<p>在子组件中，通过 <code>props.location.state</code> 就可获取到相应参数，但要注意，数据全部保存在浏览器 <code>BOM</code> 对象中的 <code>history</code> 属性上，清除缓存后数据会丢失。</p>
+<p>可在使用 state 时通过逻辑或为其赋一个空对象，避免页面出错。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="title class_">Link</span> to=&#123;&#123; <span class="attr">pathname</span>: <span class="string">&quot;/home/message/detail&quot;</span>, <span class="attr">state</span>: &#123; id, title &#125; &#125;&#125;&gt;</span><br><span class="line">  &#123;title&#125;</span><br><span class="line">&lt;/<span class="title class_">Link</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/home/message/detail&quot;</span> <span class="attr">component</span>=<span class="string">&#123;Detail&#125;</span> /&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="replace-模式"><a href="#replace-模式" class="headerlink" title="replace 模式"></a><code>replace</code> 模式</h2><p>和 <code>exact</code> 类似，给路由链接添加一个 <code>replace</code> 属性后即开启 <code>replace</code> 模式，作用就是替换默认的 <code>go</code> 行为，路由跳转会替换当前的历史记录，无法通过后退返回。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="title class_">Link</span></span><br><span class="line">  <span class="comment">// replace 模式，替换当前历史记录</span></span><br><span class="line">  replace</span><br><span class="line">  to=&#123;&#123; <span class="attr">pathname</span>: <span class="string">&quot;/home/message/detail&quot;</span>, <span class="attr">state</span>: &#123; id, title &#125; &#125;&#125;</span><br><span class="line">&gt;</span><br><span class="line">  &#123;title&#125;</span><br><span class="line">&lt;/<span class="title class_">Link</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h2><p>根组件在包裹上 Router 组件后，每个路由组件就默认将 <code>history</code>，<code>match</code>，<code>location</code> 等三个属性传递进了 <code>props</code> 中，在自定义函数中直接调用就可实现函数式编程。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">handleReplaceBtnClick</span> = (<span class="params">id, title</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; replace &#125; = props.<span class="property">history</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">replace</span>(<span class="string">`/home/message/detail/<span class="subst">$&#123;id&#125;</span>/<span class="subst">$&#123;title&#125;</span>`</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="紅葉猫 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="紅葉猫 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>紅葉猫
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://neko.ren/2022/11/08/React-Router-V5-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" title="React Router V5 学习记录">https://neko.ren/2022/11/08/React-Router-V5-学习记录/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://twitter.com/momijin3ko">
+            <span class="icon">
+              <i class="fab fa-twitter"></i>
+            </span>
+
+            <span class="label">Twitter</span>
+          </a>
+      </div>
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://t.me/momijineko">
+            <span class="icon">
+              <i class="fab fa-telegram"></i>
+            </span>
+
+            <span class="label">Telegram</span>
+          </a>
+      </div>
+
+      <div class="social-item">
+          <span class="social-link">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </span>
+
+          <img class="social-item-img" src="/images/wechat_channel.png">
+      </div>
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/react/" rel="tag"># react</a>
+              <a href="/tags/react-router/" rel="tag"># react-router</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/11/07/Redux%E5%92%8CReact-Redux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="prev" title="Redux和React-Redux学习笔记">
+                  <i class="fa fa-chevron-left"></i> Redux和React-Redux学习笔记
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/01/02/Linux%E8%B8%A9%E5%9D%91%EF%BC%88%E4%B8%80%EF%BC%89-%E9%83%A8%E5%88%86%E7%AC%94%E7%94%B5%E8%BF%9E%E6%8E%A5%E8%80%B3%E6%9C%BA%E5%BA%95%E5%99%AA%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" rel="next" title="Linux踩坑（一） 部分笔电连接耳机底噪问题解决">
+                  Linux踩坑（一） 部分笔电连接耳机底噪问题解决 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
+            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane disqusjs" id="comment-disqusjs">
+              
+  <div class="comments disqusjs-container">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+            </div>
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments gitalk-container"></div>
+            </div>
+        </div>
+      </div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">紅葉猫</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">7k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">25 分钟</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+<script class="next-config" data-name="gitter" type="application/json">{"enable":true,"room":"momijineko/blog"}</script>
+<script src="/js/third-party/chat/gitter.js"></script>
+<script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.8/pdfobject.min.js","integrity":"sha256-tu9j5pBilBQrWSDePOOajCUdz6hWsid/lBNzK4KgEPM="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.3.0/mermaid.min.js","integrity":"sha256-QdTG1YTLLTwD3b95jLqFxpQX9uYuJMNAtVZgwKX4oYU="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"ignores":null,"url":"https://neko.ren/2022/11/08/React-Router-V5-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/styles/disqusjs.css" integrity="sha256-71XarXwNr1Td27HmZI9zjY+rMzRdush6/glo6VFXp7o=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{"enable":true,"api":"https://disqus.skk.moe/disqus/","apikey":"KSohQUysA8orJEMpXQmNHXOn9MLfpHoGbRzCMIpGerwwV9bfCeSixhXuihSr4yq7","shortname":"momijineko","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/disqusjs.es2015.umd.min.js","integrity":"sha256-okP99ZQKVpIy7+NogAMpGlIQzJa9XKXhIJcFgdju5bU="}}</script>
+<script src="/js/third-party/comments/disqusjs.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"momijineko","repo":"momijineko.github.io","client_id":"97a06f4dc730468ebc2e","client_secret":"02c84e4bec500209f00a0a97fc24c4a2330915bc","admin_user":"momijineko","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"f0e4318a01eb684b96b9e35685c2af93"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
